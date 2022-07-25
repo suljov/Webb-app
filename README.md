@@ -16,7 +16,7 @@
 - [Security Logging and Monitoring Failures](#Security-Logging-and-Monitoring-Failures)
 - [Server-Side Request Forgery](#Server-Side-Request-Forgery)
 - [Server Side Template Injection](#Server-Side-Template-Injection)
-- [](#)
+- [File Inclusion ](#File-Inclusion)
 - [](#)
 - [](#)
 
@@ -33,41 +33,89 @@ https://owasp.org/
 ```
 
 ### Broken Access Control
+Common Weakness Enumerations (CWEs) included are 
+CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+CWE-201: Insertion of Sensitive Information Into Sent Data
+CWE-352: Cross-Site Request Forgery.
 ```
 https://owasp.org/Top10/A01_2021-Broken_Access_Control/
 ```
 
 ### Cryptographic Failures 
+Notable Common Weakness Enumerations (CWEs) included are 
+CWE-259: Use of Hard-coded Password
+CWE-327: Broken or Risky Crypto Algorithm
+CWE-331 Insufficient Entropy.
 ```
 https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
 ```
 
 ### Injection
+Notable Common Weakness Enumerations (CWEs) included are 
+CWE-79: Cross-site Scripting
+CWE-89: SQL Injection
+CWE-73: External Control of File Name or Path
 ```
 https://owasp.org/Top10/A03_2021-Injection/
 ```
+```
+https://portswigger.net/web-security/cross-site-scripting
+```
+```
+https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting
+```
+```
+file:///tmp/mozilla_kali0/cheat-sheet.pdf
+```
+```
+https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
+```
+```
+https://portswigger.net/web-security/sql-injection/cheat-sheet
+```
+```
+https://book.hacktricks.xyz/pentesting-web/sql-injection
+```
 
 ### Insecure Design
+Notable Common Weakness Enumerations (CWEs) include
+CWE-209: Generation of Error Message Containing Sensitive Information
+CWE-256: Unprotected Storage of Credentials
+CWE-501: Trust Boundary Violation
+CWE-522: Insufficiently Protected Credentials
 ```
 https://owasp.org/Top10/A04_2021-Insecure_Design/
 ```
 
 ### Security Misconfiguration
+Notable CWEs included are 
+CWE-16 Configuration
+CWE-611 Improper Restriction of XML External Entity Reference
 ```
 https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
 ```
 
 ### Vulnerable and Outdated Components
+Notable CWEs included are 
+CWE-1104: Use of Unmaintained Third-Party Components and the two CWEs from Top 10 2013 and 2017
 ```
 https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/
 ```
 
 ### Identification and Authentication Failures 
+Notable CWEs included are 
+CWE-297: Improper Validation of Certificate with Host Mismatch
+CWE-287: Improper Authentication
+CWE-384: Session Fixation
 ```
 https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures
 ```
 
 ### Security Logging and Monitoring Failures
+Notable Common Weakness Enumerations (CWEs) include 
+CWE-829: Inclusion of Functionality from Untrusted Control Sphere
+CWE-494: Download of Code Without Integrity Check
+CWE-502: Deserialization of Untrusted Data
 ```
 https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/
 ```
@@ -75,6 +123,9 @@ https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/
 ### Server-Side Request Forgery
 ```
 https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
+```
+```
+https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 ```
 
 ### Server Side Template Injection
@@ -197,4 +248,12 @@ ${self.template.module.runtime.exceptions.traceback.linecache.os.system("id")}
 {{cycler.__init__.__globals__.os}}
 {{joiner.__init__.__globals__.os}}
 {{namespace.__init__.__globals__.os}}
+```
+
+### File Inclusion 
+```
+https://book.hacktricks.xyz/pentesting-web/file-inclusion
+```
+```
+https://highon.coffee/blog/lfi-cheat-sheet/
 ```
