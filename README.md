@@ -2,8 +2,6 @@
 
 ## Table of content
 
-
-- [tools](#tools)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
@@ -20,11 +18,6 @@
 - [](#)
 - [](#)
 
-
-
-
-
-### tools
 
 ### owasp top 10
 
