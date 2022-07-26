@@ -2,6 +2,8 @@
 
 ## Table of content
 
+- [tools](#tools)
+  - [XSRFProbe](#XSRFProbe)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
@@ -18,6 +20,18 @@
 - [](#)
 - [](#)
 
+
+### tools
+
+### XSRFProbe
+
+The Prime Cross Site Request Forgery (CSRF) Audit and Exploitation Toolkit. 
+
+XSRFProbe is an advanced Cross Site Request Forgery (CSRF/XSRF) Audit and Exploitation Toolkit. Equipped with a powerful crawling engine and numerous systematic checks, it is able to detect most cases of CSRF vulnerabilities, their related bypasses and futher generate (maliciously) exploitable proof of concepts with each found vulnerability.
+
+```
+https://github.com/0xInfection/XSRFProbe
+```
 
 ### owasp top 10
 
