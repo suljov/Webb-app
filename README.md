@@ -11,7 +11,9 @@
   - [basic SQL](#basic-SQL)
   - [What is SQL Injection](#What-is-SQL-Injection)
   - [In Band SQLi](#In-Band-SQLi)
-  - [Blind SQLi Authentication Bypass](#Blind-SQLi-Authentication-Bypass)
+  - [Blind SQLi Authentication Bypass](#Blind-SQLi-Authentication-Bypass)¨
+  - [Blind SQLi Boolean Based](#Blind-SQLi-Boolean-Based)
+  - [Blind SQLi Time Based](Blind-SQLi-Time-Based)
 - [Insecure Design](#Insecure-Design)
 - [Security Misconfiguration](#Security-Misconfiguration)
 - [Vulnerable and Outdated Components](#Vulnerable-and-Outdated-Components)
@@ -440,6 +442,131 @@ select * from users where username='' and password='' OR 1=1;
 
 Because 1=1 is a true statement and we've used an OR operator, this will always cause the query to return as true, which satisfies the web applications logic that the database found a valid username/password combination and that access should be allowed.
 
+
+Blind SQLi - Boolean Based 
+
+Boolean Based
+
+Boolean based SQL Injection refers to the response we receive back from our injection attempts which could be a true/false, yes/no, on/off, 1/0 or any response which can only ever have two outcomes. That outcome confirms to us that our SQL Injection payload was either successful or not. On the first inspection, you may feel like this limited response can't provide much information. Still, in fact, with just these two responses, it's possible to enumerate a whole database structure and contents.
+
+
+Practical tips and example:
+
+On this example of SQL, you're presented with a mock browser with the following URL:
+
+```
+https://website.thm/checkuser?username=admin
+```
+
+The browser body contains the contents of {"taken":true}. This API endpoint replicates a common feature found on many signup forms, which checks whether a username has already been registered to prompt the user to choose a different username. Because the taken value is set to true, we can assume the username admin is already registered. In fact, we can confirm this by changing the username in the mock browser's address bar from admin to admin123, and upon pressing enter, you'll see the value taken has now changed to false.
+
+
+The SQL query that is processed looks like the following:
+
+```
+select * from users where username = '%username%' LIMIT 1;
+```
+
+As the only input, we have control over is the username in the query string, we'll have to use this to perform our SQL Injection. Keeping the username as admin123, we can start appending to this to try and make the database confirm true things, which will change the state of the taken field from false to true.
+
+
+Like in previous levels, our first task is to establish the number of columns in the users table, which we can achieve by using the UNION statement. Change the username value to the following:
+
+```
+admin123' UNION SELECT 1;-- 
+```
+
+As the web application has responded with the value taken as false, we can confirm this is the incorrect value of columns. Keep on adding more columns until we have a taken value of true. You can confirm that the answer is three columns by setting the username to the below value:
+
+```
+admin123' UNION SELECT 1,2,3;-- 
+```
+
+Now that our number of columns has been established, we can work on the enumeration of the database. Our first task is discovering the database name. We can do this by using the built-in database() method and then using the like operator to try and find results that will return a true status.
+
+Try the below username value and see what happens:
+
+```
+admin123' UNION SELECT 1,2,3 where database() like '%';--
+```
+
+We get a true response because, in the like operator, we just have the value of %, which will match anything as it's the wildcard value. If we change the wildcard operator to a%, you'll see the response goes back to false, which confirms that the database name does not begin with the letter a. We can cycle through all the letters, numbers and characters such as - and _ until we discover a match. If you send the below as the username value, you'll receive a true response that confirms the database name begins with the letter s.
+
+```
+admin123' UNION SELECT 1,2,3 where database() like 's%';--
+```
+
+Now you move onto the next character of the database name until you find another true response, for example, 'sa%', 'sb%', 'sc%' etc. Keep on with this process until you discover all the characters of the database name, which is sqli_three.
+
+
+We've established the database name, which we can now use to enumerate table names using a similar method by utilising the information_schema database. Try setting the username to the following value:
+
+```
+admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name like 'a%';--
+```
+
+This query looks for results in the information_schema database in the tables table where the database name matches sqli_three, and the table name begins with the letter a. As the above query results in a false response, we can confirm that there are no tables in the sqli_three database that begin with the letter a. Like previously, you'll need to cycle through letters, numbers and characters until you find a positive match.
+
+
+You'll finally end up discovering a table in the sqli_three database named users, which you can be confirmed by running the following username payload:
+
+```
+admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name='users';--
+```
+
+Lastly, we now need to enumerate the column names in the users table so we can properly search it for login credentials. Again using the information_schema database and the information we've already gained, we can start querying it for column names. Using the payload below, we search the columns table where the database is equal to sqli_three, the table name is users, and the column name begins with the letter a.
+
+```
+admin123' UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='sqli_three' and TABLE_NAME='users' and COLUMN_NAME like 'a%';
+```
+
+Again you'll need to cycle through letters, numbers and characters until you find a match. As you're looking for multiple results, you'll have to add this to your payload each time you find a new column name, so you don't keep discovering the same one. For example, once you've found the column named id, you'll append that to your original payload (as seen below).
+
+```
+admin123' UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='sqli_three' and TABLE_NAME='users' and COLUMN_NAME like 'a%' and COLUMN_NAME !='id';
+```
+
+Repeating this process three times will enable you to discover the columns id, username and password. Which now you can use to query the users table for login credentials. First, you'll need to discover a valid username which you can use the payload below:
+
+```
+admin123' UNION SELECT 1,2,3 from users where username like 'a%'
+```
+
+Which, once you've cycled through all the characters, you will confirm the existence of the username admin. Now you've got the username. You can concentrate on discovering the password. The payload below shows you how to find the password:
+
+```
+admin123' UNION SELECT 1,2,3 from users where username='admin' and password like 'a%'
+```
+
+### Blind SQLi Time Based 
+
+Time-Based
+
+
+A time-based blind SQL Injection is very similar to the above Boolean based, in that the same requests are sent, but there is no visual indicator of your queries being wrong or right this time. Instead, your indicator of a correct query is based on the time the query takes to complete. This time delay is introduced by using built-in methods such as SLEEP(x) alongside the UNION statement. The SLEEP() method will only ever get executed upon a successful UNION SELECT statement. 
+
+So, for example, when trying to establish the number of columns in a table, you would use the following query:
+
+```
+admin123' UNION SELECT SLEEP(5);--
+```
+
+If there was no pause in the response time, we know that the query was unsuccessful, so like on previous tasks, we add another column:
+
+```
+admin123' UNION SELECT SLEEP(5),2;--
+```
+
+This payload should have produced a 5-second time delay, which confirms the successful execution of the UNION statement and that there are two columns.
+
+
+You can now repeat the enumeration process from the Boolean based SQL Injection, adding the SLEEP() method into the UNION SELECT statement.
+
+If you're struggling to find the table name the below query should help you on your way:
+
+```
+referrer=admin123' UNION SELECT SLEEP(5),2 where database() like 'u%';--
+```
 
 
 ### Insecure Design
