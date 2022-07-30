@@ -13,7 +13,7 @@
   - [In Band SQLi](#In-Band-SQLi)
   - [Blind SQLi Authentication Bypass](#Blind-SQLi-Authentication-Bypass)¨
   - [Blind SQLi Boolean Based](#Blind-SQLi-Boolean-Based)
-  - [Blind SQLi Time Based](Blind-SQLi-Time-Based)
+  - [Blind SQLi Time Based](#Blind-SQLi-Time-Based)
 - [Insecure Design](#Insecure-Design)
 - [Security Misconfiguration](#Security-Misconfiguration)
 - [Vulnerable and Outdated Components](#Vulnerable-and-Outdated-Components)
