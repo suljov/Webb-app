@@ -443,7 +443,7 @@ select * from users where username='' and password='' OR 1=1;
 Because 1=1 is a true statement and we've used an OR operator, this will always cause the query to return as true, which satisfies the web applications logic that the database found a valid username/password combination and that access should be allowed.
 
 
-Blind SQLi - Boolean Based 
+### Blind SQLi - Boolean Based 
 
 Boolean Based
 
