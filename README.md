@@ -4,6 +4,7 @@
 
 - [tools](#tools)
   - [XSRFProbe](#XSRFProbe)
+  - [sublist3r](#sublist3r)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
@@ -39,6 +40,17 @@ XSRFProbe is an advanced Cross Site Request Forgery (CSRF/XSRF) Audit and Exploi
 
 ```
 https://github.com/0xInfection/XSRFProbe
+```
+
+### sublist3r
+Search for subdomains 
+
+This package contains a Python tool designed to enumerate subdomains of websites using OSINT. It helps penetration testers and bug hunters collect and gather subdomains for the domain they are targeting. Sublist3r enumerates subdomains using many search engines such as Google, Yahoo, Bing, Baidu, and Ask. Sublist3r also enumerates subdomains using Netcraft, Virustotal, ThreatCrowd, DNSdumpster, and ReverseDNS.
+
+Subbrute was integrated with Sublist3r to increase the possibility of finding more subdomains using bruteforce with an improved wordlist, thanks to TheRook, author of subbrute.
+
+``´
+https://www.kali.org/tools/sublist3r/
 ```
 
 ### owasp top 10
