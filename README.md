@@ -5,6 +5,8 @@
 - [tools](#tools)
   - [XSRFProbe](#XSRFProbe)
   - [sublist3r](#sublist3r)
+  - [Hakrawler](#Hakrawler)
+- [subdomain enumeration](#subdomain-enumeration)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
@@ -49,9 +51,23 @@ This package contains a Python tool designed to enumerate subdomains of websites
 
 Subbrute was integrated with Sublist3r to increase the possibility of finding more subdomains using bruteforce with an improved wordlist, thanks to TheRook, author of subbrute.
 
-``´
+```
 https://www.kali.org/tools/sublist3r/
 ```
+
+### Hakrawler
+Simple, fast web crawler designed for easy, quick discovery of endpoints and assets within a web application
+
+```
+https://github.com/hakluke/hakrawler.git
+```
+```
+https://www.kali.org/tools/hakrawler/
+```
+
+
+### subdomain enumeration
+
 
 ### owasp top 10
 
