@@ -6,6 +6,7 @@
   - [XSRFProbe](#XSRFProbe)
   - [sublist3r](#sublist3r)
   - [Hakrawler](#Hakrawler)
+  - [gau](#gau)
 - [subdomain enumeration](#subdomain-enumeration)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
@@ -65,6 +66,13 @@ https://github.com/hakluke/hakrawler.git
 https://www.kali.org/tools/hakrawler/
 ```
 
+### gau
+```
+https://www.kali.org/tools/getallurls/
+```
+```
+https://github.com/lc/gau
+```
 
 ### subdomain enumeration
 
