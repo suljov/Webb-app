@@ -660,6 +660,50 @@ https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
 https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 ```
 
+What is an SSRF?
+
+SSRF stands for Server-Side Request Forgery. It's a vulnerability that allows a malicious user to cause the webserver to make an additional or edited HTTP request to the resource of the attacker's choosing.
+
+
+Types of SSRF
+
+There are two types of SSRF vulnerability; the first is a regular SSRF where data is returned to the attacker's screen. The second is a Blind SSRF vulnerability where an SSRF occurs, but no information is returned to the attacker's screen.
+What's the impact?
+
+A successful SSRF attack can result in any of the following: 
+
+Access to unauthorised areas.
+Access to customer/organisational data.
+Ability to Scale to internal networks.
+Reveal authentication tokens/credentials.
+    
+We're going to take you through some sample SSRF attacks and explain how they work.
+    
+The below example shows how the attacker can have complete control over the page requested by the webserver.
+The Expected Request is what the website.com server is expecting to receive, with the section in red being the URL that the website will fetch for the information.
+The attacker can modify the area in red to an URL of their choice.
+
+![image](https://user-images.githubusercontent.com/24814781/182042173-fe691d3a-d263-4141-bad2-ab3a0ed6851f.png)
+
+The below example shows how an attacker can still reach the /api/user page with only having control over the path by utilising directory traversal. When website.thm receives ../ this is a message to move up a directory which removes the /stock portion of the request and turns the final request into /api/user 
+
+![image](https://user-images.githubusercontent.com/24814781/182042218-f94dec9b-a313-4a89-a283-c16670c6ad1d.png)
+
+
+In this example, the attacker can control the server's subdomain to which the request is made. Take note of the payload ending in &x= being used to stop the remaining path from being appended to the end of the attacker's URL and instead turns it into a parameter (?x=) on the query string. 
+
+![image](https://user-images.githubusercontent.com/24814781/182042248-8a5e67e8-33a2-409b-aca8-d24802245810.png)
+
+Going back to the original request, the attacker can instead force the webserver to request a server of the attacker's choice. By doing so, we can capture request headers that are sent to the attacker's specified domain. These headers could contain authentication credentials or API keys sent by website.thm (that would normally authenticate to api.website.com). 
+
+![image](https://user-images.githubusercontent.com/24814781/182042260-69c0141c-b079-425b-9c15-30fc7b28ee77.png)
+
+
+
+
+
+
+
 ### Server Side Template Injection
 ```
 https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server_Side_Template_Injection
