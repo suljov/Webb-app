@@ -7,6 +7,7 @@
   - [sublist3r](#sublist3r)
   - [Hakrawler](#Hakrawler)
   - [gau](#gau)
+  - [dnsrecon](#dnsrecon)
 - [subdomain enumeration](#subdomain-enumeration)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
@@ -73,6 +74,9 @@ https://www.kali.org/tools/getallurls/
 ```
 https://github.com/lc/gau
 ```
+
+### dnsrecon
+
 
 ### subdomain enumeration
 
