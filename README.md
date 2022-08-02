@@ -13,6 +13,7 @@
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
 - [Injection](#Injection)
+  - [sql cheat sheet and resources](#sql-cheat-sheet-and-resources)
   - [basic SQL](#basic-SQL)
   - [What is SQL Injection](#What-is-SQL-Injection)
   - [In Band SQLi](#In-Band-SQLi)
@@ -170,6 +171,15 @@ https://portswigger.net/web-security/sql-injection/cheat-sheet
 ```
 https://book.hacktricks.xyz/pentesting-web/sql-injection
 ```
+
+### sql cheat sheet and resources
+```
+https://github.com/payloadbox/sql-injection-payload-list
+```
+```
+https://book.hacktricks.xyz/pentesting-web/sql-injection
+``` 
+
 
 ### basic SQL  
 
