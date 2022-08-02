@@ -1076,6 +1076,11 @@ While using the TryHackMe AttackBox, let's set up a listening server using Netca
 ```
 nc -nlvp 9001
 ```
+or use 
+```
+python3 -m http.server <port> 
+```
+
 
 Now that we've set up the method of receiving the exfiltrated information, let's build the payload.
 
