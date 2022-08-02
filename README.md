@@ -22,6 +22,7 @@
   - [Out of Band SQLi](#Out-of-Band-SQLi)
   - [SQL injection Remediation](#SQL-injection-Remediation)
   - [Cross site Scripting](#Cross-site-Scripting)
+  - [xss payload cheat sheets and resources](#xss-payload-cheat-sheets-and-resources)
   - [XSS Payloads](#XSS-Payloads)
   - [Reflected XSS](#Reflected-XSS)
   - [Stored XSS](#Stored-XSS)
@@ -692,6 +693,17 @@ It's worth noting that because XSS is based on JavaScript, it would be helpful t
 
 Cross-Site Scripting, better known as XSS in the cybersecurity community, is classified as an injection attack where malicious JavaScript gets injected into a web application with the intention of being executed by other users. In this room, you'll learn about the different XSS types, how to create XSS payloads, how to modify your payloads to evade filters, and then end with a practical lab where you can try out your new skills.
 
+
+### xss payload cheat sheets and resources
+```
+https://netsec.expert/posts/xss-in-2021/
+```
+```
+https://github.com/payloadbox/xss-payload-list
+```
+```
+https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html
+```
 
 
 ### XSS Payloads
