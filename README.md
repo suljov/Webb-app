@@ -1031,7 +1031,9 @@ Try creating a support ticket by clicking the green Create Ticket button, enter 
 
 Like task three, we will investigate how the previously entered text gets reflected on the page. Upon viewing the page source, we can see the text gets placed inside a textarea tag.
 
-![image](https://user-images.githubusercontent.com/24814781/182380194-a6e6314a-4e62-43d6-91ba-89f8daad4123.png)
+![image](https://user-images.githubusercontent.com/24814781/182381106-ca5e0a57-dff3-43e4-a8fb-2f5b2cfaf343.png)
+![image](https://user-images.githubusercontent.com/24814781/182381112-24310bb6-92c0-4b4d-9082-be547976268c.png)
+
 
 Let's now go back and create another ticket. Let's see if we can escape the textarea tag by entering the following payload into the ticket contents:
 
@@ -1041,7 +1043,9 @@ Let's now go back and create another ticket. Let's see if we can escape the text
 
 Again, opening the ticket and viewing the page source, we've successfully escaped the textarea tag. 
 
-![image](https://user-images.githubusercontent.com/24814781/182380257-bba98350-4898-4036-a9a5-020519bffb4d.png)
+![image](https://user-images.githubusercontent.com/24814781/182381148-54e8f4c7-14da-4dbf-bb38-6cbd14645434.png)
+![image](https://user-images.githubusercontent.com/24814781/182381158-4670396b-07eb-4a5e-8583-d1365a506f07.png)
+
 
 Let's now expand on this payload to see if we can run JavaScript and confirm that the ticket creation feature is vulnerable to an XSS attack. Try another new ticket with the following payload:
 
