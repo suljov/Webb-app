@@ -44,7 +44,7 @@
   - [Local File Inclusion LFI](#Local-File-Inclusion-LFI)
   - [Remote File Inclusion RFI](#Remote-File-Inclusion-RFI)
   - [LFI and RFI Remediation](#LFI-and-RFI-Remediation)
-  - [JWT token](#JWT token)
+- [JWT token](#JWT token)
   - [JWT tools](#JWT-tools)
   - [JWT resources](#JWT-resources)
  
