@@ -44,7 +44,7 @@
   - [Local File Inclusion LFI](#Local-File-Inclusion-LFI)
   - [Remote File Inclusion RFI](#Remote-File-Inclusion-RFI)
   - [LFI and RFI Remediation](#LFI-and-RFI-Remediation)
-
+- [JWT token](#JWT token)
 
 
 ### tools
@@ -1643,4 +1643,26 @@ As a developer, it's important to be aware of web application vulnerabilities, h
 7.    Implement whitelisting for file names and locations as well as blacklisting.
 
 
+### JWT token
+
+#### JWT tools
+```
+https://jwt.io/
+```
+```
+https://github.com/ticarpi/jwt_tool
+```
+#### JWT resources 
+```
+https://www.youtube.com/watch?v=8Yev14elbTc
+```
+```
+https://www.youtube.com/watch?v=ZGarKE9KTAY
+```
+```
+https://tryhackme.com/room/zthobscurewebvulns
+```
+```
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/JSON%20Web%20Token
+```
 
