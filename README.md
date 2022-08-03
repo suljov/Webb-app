@@ -1166,6 +1166,10 @@ https://www.contrastsecurity.com/security-influencers/insights-appsec-intelligen
  ```
  https://github.com/payloadbox/command-injection-payload-list
  ```
+ ```
+ https://book.hacktricks.xyz/pentesting-web/command-injection
+ ```
+ 
  
  ### Discovering Command Injection
 This vulnerability exists because applications often use functions in programming languages such as PHP, Python and NodeJS to pass data to and to make system calls on the machine’s operating system. For example, taking input from a field and searching for an entry into a file. Take this code snippet below as an example:
