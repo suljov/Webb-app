@@ -48,6 +48,7 @@
   - [JWT tools](#JWT-tools)
   - [JWT resources](#JWT-resources)
  
+ 
 
 ### tools
 
@@ -1653,6 +1654,9 @@ https://jwt.io/
 ```
 ```
 https://github.com/ticarpi/jwt_tool
+```
+```
+https://github.com/cyberblackhole/TokenBreaker
 ```
 #### JWT resources 
 ```
