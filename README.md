@@ -158,6 +158,11 @@ Search engines contain trillions of links to more than a billion websites, which
 
 Bruteforce DNS (Domain Name System) enumeration is the method of trying tens, hundreds, thousands or even millions of different possible subdomains from a pre-defined list of commonly used subdomains. Because this method requires many requests, we automate it with tools to make the process quicker. In this instance, we are using a tool called dnsrecon to perform this.
 
+example of brute force using dnsrecon:
+```
+dnsrecon -t brt -d suljov.com
+```
+
 
 
 ### owasp top 10
