@@ -70,32 +70,7 @@
 
 ### subdomain enumeration
 
-
-### owasp top 10
-
-```
-https://owasp.org/
-```
-
-### Broken Access Control
-Common Weakness Enumerations (CWEs) included are 
-CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
-CWE-201: Insertion of Sensitive Information Into Sent Data
-CWE-352: Cross-Site Request Forgery.
-```
-https://owasp.org/Top10/A01_2021-Broken_Access_Control/
-```
-
-### Cryptographic Failures 
-Notable Common Weakness Enumerations (CWEs) included are 
-CWE-259: Use of Hard-coded Password
-CWE-327: Broken or Risky Crypto Algorithm
-CWE-331 Insufficient Entropy.
-```
-https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
-```
-
-### XSRFProbe
+#### XSRFProbe
 
 The Prime Cross Site Request Forgery (CSRF) Audit and Exploitation Toolkit. 
 
@@ -105,7 +80,7 @@ XSRFProbe is an advanced Cross Site Request Forgery (CSRF/XSRF) Audit and Exploi
 https://github.com/0xInfection/XSRFProbe
 ```
 
-### sublist3r
+#### sublist3r
 Search for subdomains 
 
 This package contains a Python tool designed to enumerate subdomains of websites using OSINT. It helps penetration testers and bug hunters collect and gather subdomains for the domain they are targeting. Sublist3r enumerates subdomains using many search engines such as Google, Yahoo, Bing, Baidu, and Ask. Sublist3r also enumerates subdomains using Netcraft, Virustotal, ThreatCrowd, DNSdumpster, and ReverseDNS.
@@ -116,7 +91,7 @@ Subbrute was integrated with Sublist3r to increase the possibility of finding mo
 https://www.kali.org/tools/sublist3r/
 ```
 
-### Hakrawler
+#### Hakrawler
 Simple, fast web crawler designed for easy, quick discovery of endpoints and assets within a web application
 
 ```
@@ -126,7 +101,7 @@ https://github.com/hakluke/hakrawler.git
 https://www.kali.org/tools/hakrawler/
 ```
 
-### gau
+#### gau
 ```
 https://www.kali.org/tools/getallurls/
 ```
@@ -134,7 +109,7 @@ https://www.kali.org/tools/getallurls/
 https://github.com/lc/gau
 ```
 
-### dnsrecon
+#### dnsrecon
 
 DNSRecon is a Python script that provides the ability to perform:
 
@@ -160,6 +135,31 @@ Enumerate Hosts and Subdomains using Google
 
 ```
 https://www.kali.org/tools/dnsrecon/
+```
+
+
+### owasp top 10
+
+```
+https://owasp.org/
+```
+
+### Broken Access Control
+Common Weakness Enumerations (CWEs) included are 
+CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+CWE-201: Insertion of Sensitive Information Into Sent Data
+CWE-352: Cross-Site Request Forgery.
+```
+https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+```
+
+### Cryptographic Failures 
+Notable Common Weakness Enumerations (CWEs) included are 
+CWE-259: Use of Hard-coded Password
+CWE-327: Broken or Risky Crypto Algorithm
+CWE-331 Insufficient Entropy.
+```
+https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
 ```
 
 
