@@ -7,6 +7,7 @@
   - [sublist3r](#sublist3r)
   - [Hakrawler](#Hakrawler)
   - [gau](#gau)
+  - [dnsrecon](#dnsrecon)
 - [subdomain enumeration](#subdomain-enumeration)
   - [Brief](#Brief)'
   - [OSINT  SSL TLS Certificates](#OSINT -SSL-TLS-Certificates)
@@ -134,7 +135,7 @@ Enumerate Hosts and Subdomains using Google
 ```
 https://www.kali.org/tools/dnsrecon/
 ```
-![image](https://user-images.githubusercontent.com/24814781/183068737-8b2b6008-ea6e-44b0-9133-04d477418d25.png)
+![image](https://user-images.githubusercontent.com/24814781/183069087-973c4eb4-ea06-4277-af20-8623447feac5.png)
 
 
 
