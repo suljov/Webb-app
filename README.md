@@ -2,14 +2,16 @@
 
 ## Table of content
 
- 
-  
-- [subdomain enumeration](#subdomain-enumeration)
+- [tools](#tools)
   - [XSRFProbe](#XSRFProbe)
   - [sublist3r](#sublist3r)
   - [Hakrawler](#Hakrawler)
   - [gau](#gau)
-  - [dnsrecon](#dnsrecon)
+- [subdomain enumeration](#subdomain-enumeration)
+  - [Brief](#Brief)'
+  - [OSINT  SSL TLS Certificates](#OSINT -SSL-TLS-Certificates)
+  - [OSINT Search Engines](#OSINT-Search-Engines)
+  - [DNS Bruteforce](#DNS-Bruteforce)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
@@ -65,11 +67,7 @@
 
 
 
-
-
-
-### subdomain enumeration
-
+### tools
 #### XSRFProbe
 
 The Prime Cross Site Request Forgery (CSRF) Audit and Exploitation Toolkit. 
@@ -136,6 +134,29 @@ Enumerate Hosts and Subdomains using Google
 ```
 https://www.kali.org/tools/dnsrecon/
 ```
+![image](https://user-images.githubusercontent.com/24814781/183068737-8b2b6008-ea6e-44b0-9133-04d477418d25.png)
+
+
+
+### subdomain enumeration
+
+####  Brief
+Subdomain enumeration is the process of finding valid subdomains for a domain, but why do we do this? We do this to expand our attack surface to try and discover more potential points of vulnerability.
+
+We will explore three different subdomain enumeration methods: Brute Force, OSINT (Open-Source Intelligence) and Virtual Host.
+
+#### OSINT  SSL TLS Certificates
+
+When an SSL/TLS (Secure Sockets Layer/Transport Layer Security) certificate is created for a domain by a CA (Certificate Authority), CA's take part in what's called "Certificate Transparency (CT) logs". These are publicly accessible logs of every SSL/TLS certificate created for a domain name. The purpose of Certificate Transparency logs is to stop malicious and accidentally made certificates from being used. We can use this service to our advantage to discover subdomains belonging to a domain, sites like https://crt.sh and https://transparencyreport.google.com/https/certificates offer a searchable database of certificates that shows current and historical results.
+
+#### OSINT Search Engines
+
+Search engines contain trillions of links to more than a billion websites, which can be an excellent resource for finding new subdomains. Using advanced search methods on websites like Google, such as the site: filter, can narrow the search results. For example, "-site:www.domain.com site:*.domain.com" would only contain results leading to the domain name domain.com but exclude any links to www.domain.com; therefore, it shows us only subdomain names belonging to domain.com.
+
+#### DNS Bruteforce 
+
+Bruteforce DNS (Domain Name System) enumeration is the method of trying tens, hundreds, thousands or even millions of different possible subdomains from a pre-defined list of commonly used subdomains. Because this method requires many requests, we automate it with tools to make the process quicker. In this instance, we are using a tool called dnsrecon to perform this.
+
 
 
 ### owasp top 10
