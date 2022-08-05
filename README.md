@@ -64,72 +64,7 @@
  
 
 
-### XSRFProbe
 
-The Prime Cross Site Request Forgery (CSRF) Audit and Exploitation Toolkit. 
-
-XSRFProbe is an advanced Cross Site Request Forgery (CSRF/XSRF) Audit and Exploitation Toolkit. Equipped with a powerful crawling engine and numerous systematic checks, it is able to detect most cases of CSRF vulnerabilities, their related bypasses and futher generate (maliciously) exploitable proof of concepts with each found vulnerability.
-
-```
-https://github.com/0xInfection/XSRFProbe
-```
-
-### sublist3r
-Search for subdomains 
-
-This package contains a Python tool designed to enumerate subdomains of websites using OSINT. It helps penetration testers and bug hunters collect and gather subdomains for the domain they are targeting. Sublist3r enumerates subdomains using many search engines such as Google, Yahoo, Bing, Baidu, and Ask. Sublist3r also enumerates subdomains using Netcraft, Virustotal, ThreatCrowd, DNSdumpster, and ReverseDNS.
-
-Subbrute was integrated with Sublist3r to increase the possibility of finding more subdomains using bruteforce with an improved wordlist, thanks to TheRook, author of subbrute.
-
-```
-https://www.kali.org/tools/sublist3r/
-```
-
-### Hakrawler
-Simple, fast web crawler designed for easy, quick discovery of endpoints and assets within a web application
-
-```
-https://github.com/hakluke/hakrawler.git
-```
-```
-https://www.kali.org/tools/hakrawler/
-```
-
-### gau
-```
-https://www.kali.org/tools/getallurls/
-```
-```
-https://github.com/lc/gau
-```
-
-### dnsrecon
-
-DNSRecon is a Python script that provides the ability to perform:
-
-Check all NS Records for Zone Transfers.
-
-Enumerate General DNS Records for a given Domain (MX, SOA, NS, A, AAAA, SPF and TXT).
-
-Perform common SRV Record Enumeration.
-
-Top Level Domain (TLD) Expansion.
-
-Check for Wildcard Resolution.
-
-Brute Force subdomain and host A and AAAA records given a domain and a wordlist.
-
-Perform a PTR Record lookup for a given IP Range or CIDR.
-
-Check a DNS Server Cached records for A, AAAA and CNAME
-
-Records provided a list of host records in a text file to check.
-
-Enumerate Hosts and Subdomains using Google
-
-```
-https://www.kali.org/tools/dnsrecon/
-```
 
 
 
