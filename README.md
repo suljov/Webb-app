@@ -9,8 +9,8 @@
   - [gau](#gau)
   - [dnsrecon](#dnsrecon)
 - [subdomain enumeration](#subdomain-enumeration)
-  - [Brief](#Brief)'
-  - [OSINT  SSL TLS Certificates](#OSINT -SSL-TLS-Certificates)
+  - [Brief](#Brief)
+  - [OSINT  SSL TLS Certificates](#OSINT-SSL-TLS-Certificates)
   - [OSINT Search Engines](#OSINT-Search-Engines)
   - [DNS Bruteforce](#DNS-Bruteforce)
 - [owasp top 10](#owasp-top-10)
