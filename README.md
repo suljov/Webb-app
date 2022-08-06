@@ -9,6 +9,7 @@
   - [gau](#gau)
   - [dnsrecon](#dnsrecon)
   - [ffuf](#ffuf)
+  - [wfuzz](#wfuzz)
 - [subdomain enumeration](#subdomain-enumeration)
   - [Brief](#Brief)
   - [OSINT  SSL TLS Certificates](#OSINT-SSL-TLS-Certificates)
@@ -161,6 +162,10 @@ ffuf is a fest web fuzzer written in Go that allows typical directory discovery,
 ![image](https://user-images.githubusercontent.com/24814781/183070870-1f39ec68-8b9f-4945-aedb-6e2398cedb1f.png)
 
 ![image](https://user-images.githubusercontent.com/24814781/183070946-7a298c75-9f21-4bde-8019-f45966d3ba0f.png)
+
+#### wfuzz
+
+Wfuzz is a tool designed for bruteforcing Web Applications, it can be used for finding resources not linked directories, servlets, scripts, etc, bruteforce GET and POST parameters for checking different kind of injections (SQL, XSS, LDAP,etc), bruteforce Forms parameters (User/Password), Fuzzing, etc.
 
 
 
