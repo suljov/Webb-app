@@ -10,6 +10,7 @@
   - [dnsrecon](#dnsrecon)
   - [ffuf](#ffuf)
   - [wfuzz](#wfuzz)
+  - [gobuster](#gobuster)
 - [subdomain enumeration](#subdomain-enumeration)
   - [Brief](#Brief)
   - [OSINT  SSL TLS Certificates](#OSINT-SSL-TLS-Certificates)
@@ -166,6 +167,52 @@ ffuf is a fest web fuzzer written in Go that allows typical directory discovery,
 #### wfuzz
 
 Wfuzz is a tool designed for bruteforcing Web Applications, it can be used for finding resources not linked directories, servlets, scripts, etc, bruteforce GET and POST parameters for checking different kind of injections (SQL, XSS, LDAP,etc), bruteforce Forms parameters (User/Password), Fuzzing, etc.
+
+
+### gobuster
+Gobuster is a tool used to brute-force URIs including directories and files as well as DNS subdomains.
+
+```
+root@kali:~# gobuster -h
+Usage:
+  gobuster [command]
+
+Available Commands:
+  dir         Uses directory/file enumeration mode
+  dns         Uses DNS subdomain enumeration mode
+  fuzz        Uses fuzzing mode
+  help        Help about any command
+  s3          Uses aws bucket enumeration mode
+  version     shows the current version
+  vhost       Uses VHOST enumeration mode
+
+Flags:
+      --delay duration    Time each thread waits between requests (e.g. 1500ms)
+  -h, --help              help for gobuster
+      --no-error          Don't display errors
+  -z, --no-progress       Don't display progress
+  -o, --output string     Output file to write results to (defaults to stdout)
+  -p, --pattern string    File containing replacement patterns
+  -q, --quiet             Don't print the banner and other noise
+  -t, --threads int       Number of concurrent threads (default 10)
+  -v, --verbose           Verbose output (errors)
+  -w, --wordlist string   Path to the wordlist
+
+Use "gobuster [command] --help" for more information about a command.
+```
+
+
+
+#### basic examples:
+directory enum:
+```
+gobuster dir -u http://<ip> -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+```
+
+sub-domain enum:
+```
+gobuster vhost -u http://<ip/domain> -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+```
 
 
 
