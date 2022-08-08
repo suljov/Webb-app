@@ -18,7 +18,7 @@
   - [DNS Bruteforce](#DNS-Bruteforce)
   - [OSINT Sublist3r](#OSINT-Sublist3r)
   - [Virtual Hosts](#Virtual-Hosts)
-- [basic upload vulnerabilities](#basic upload vulnerabilities)
+- [basic upload vulnerabilities](#basic-upload-vulnerabilities)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
