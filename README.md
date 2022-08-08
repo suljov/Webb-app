@@ -19,6 +19,15 @@
   - [OSINT Sublist3r](#OSINT-Sublist3r)
   - [Virtual Hosts](#Virtual-Hosts)
 - [basic upload vulnerabilities](#basic-upload-vulnerabilities)
+  - [#Introduction](#Introduction)
+  - [General Methodology](#General-Methodology)
+  - [Overwriting Existing Files](#Overwriting-Existing-Files)
+  - [Remote Code Execution](#Remote-Code-Execution)
+  - [Filtering](#Filtering)
+  - [Bypassing Client Side Filtering](#Bypassing-Client-Side-Filtering)
+  - [Bypassing Server Side Filtering File Extensions](#Bypassing-Server-Side-Filtering-File-Extensions)
+  - [Bypassing Server Side Filtering Magic Numbers](#Bypassing-Server-Side-Filtering-Magic-Numbers)
+  - [Example Methodology](# Example-Methodology)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
@@ -662,7 +671,7 @@ Perfect. Now let's try uploading the modified shell and see if it bypasses the f
 There we have it -- we bypassed the server-side magic number filter and received a reverse shell. 
 
 
-####  Example Methodology
+#### Example Methodology
 
 We've seen various different types of filter now -- both client side and server side -- as well as the general methodology for file upload attacks. So let's take the opportunity to discuss an example methodology for approaching this kind of challenge in a little more depth. You may develop your own alternative to this method, however, if you're new to this kind of attack, you may find the following information useful.
 
