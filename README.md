@@ -527,6 +527,167 @@ Now, when we navigate to <example website> http://demo.uploadvulns.thm/uploads/s
 
 
 
+#### Bypassing Server Side Filtering File Extensions
+
+Time to turn things up another notch!
+
+Client-side filters are easy to bypass -- you can see the code for them, even if it's been obfuscated and needs processed before you can read it; but what happens when you can't see or manipulate the code? Well, that's a server-side filter. In short, we have to perform a lot of testing to build up an idea of what is or is not allowed through the filter, then gradually put together a payload which conforms to the restrictions.
+
+For the first part of this task we'll take a look at a website that's using a blacklist for file extensions as a server side filter. There are a variety of different ways that this could be coded, and the bypass we use is dependent on that. In the real world we wouldn't be able to see the code for this, but for this example, it will be included here:
+```
+<?php
+    //Get the extension
+    $extension = pathinfo($_FILES["fileToUpload"]["name"])["extension"];
+    //Check the extension against the blacklist -- .php and .phtml
+    switch($extension){
+        case "php":
+        case "phtml":
+        case NULL:
+            $uploadFail = True;
+            break;
+        default:
+            $uploadFail = False;
+    }
+?>
+```
+
+In this instance, the code is looking for the last period (.) in the file name and uses that to confirm the extension, so that is what we'll be trying to bypass here. Other ways the code could be working include: searching for the first period in the file name, or splitting the file name at each period and checking to see if any blacklisted extensions show up. We'll cover this latter case later on, but in the meantime, let's focus on the code we've got here.
+
+We can see that the code is filtering out the .php and .phtml extensions, so if we want to upload a PHP script we're going to have to find another extension. The wikipedia page
+```
+https://en.wikipedia.org/wiki/PHP
+```
+for PHP gives us a few common extensions that we can try; however, there are actually a variety of other more rarely used extensions available that webservers may nonetheless still recognise. These include: .php3, .php4, .php5, .php7, .phps, .php-s, .pht and .phar. Many of these bypass the filter (which only blocks.php and .phtml), but it appears that the server is configured not to recognise them as PHP files, as in the below example: 
+
+![image](https://user-images.githubusercontent.com/24814781/183414872-3466e7c4-465f-43e7-816d-3d573ed62ac6.png)
+
+This is actually the default for Apache2 servers, at the time of writing; however, the sysadmin may have changed the default configuration (or the server may be out of date), so it's well worth trying.
+
+Eventually we find that the .phar extension bypasses the filter -- and works -- thus giving us our shell:
+
+![image](https://user-images.githubusercontent.com/24814781/183415139-e01ac835-50d5-4270-a7f6-e4661f5ed643.png)
+
+Let's have a look at another example, with a different filter. This time we'll do it completely black-box: i.e. without the source code.
+
+Once again, we have our upload form:
+
+![image](https://user-images.githubusercontent.com/24814781/183415216-b71a4b80-f726-4ae1-869e-65c44ab476da.png)
+
+Ok, we'll start by scoping this out with a completely legitimate upload. Let's try uploading the spaniel.jpg image from before:
+
+![image](https://user-images.githubusercontent.com/24814781/183415264-68bca0b3-b765-4ad2-9ee4-a46591a8496e.png)
+
+Well, that tells us that JPEGS are accepted at least. Let's go for one that we can be pretty sure will be rejected (shell.php):
+
+![image](https://user-images.githubusercontent.com/24814781/183415314-ff9cffd8-2f5d-43c0-8223-156c73fc4431.png)
+
+Can't say that was unexpected.
+
+From here we enumerate further, trying the techniques from above and just generally trying to get an idea of what the filter will accept or reject.
+
+In this case we find that there are no shell extensions that both execute, and are not filtered, so it's back to the drawing board.
+
+In the previous example we saw that the code was using the pathinfo() PHP function to get the last few characters after the ., but what happens if it filters the input slightly differently?
+
+Let's try uploading a file called shell.jpg.php. We already know that JPEG files are accepted, so what if the filter is just checking to see if the .jpg file extension is somewhere within the input?
+
+Pseudocode for this kind of filter may look something like this:
+
+```
+ACCEPT FILE FROM THE USER -- SAVE FILENAME IN VARIABLE userInput
+IF STRING ".jpg" IS IN VARIABLE userInput:
+    SAVE THE FILE
+ELSE:
+    RETURN ERROR MESSAGE
+```
+
+When we try to upload our file we get a success message. Navigating to the /uploads directory confirms that the payload was successfully uploaded:
+
+![image](https://user-images.githubusercontent.com/24814781/183415566-a02b30eb-0c7f-418c-898d-c4c72c201996.png)
+
+Activating it, we receive our shell:
+
+![image](https://user-images.githubusercontent.com/24814781/183415594-4a61a386-d20d-4239-ab1b-1e770a5613c8.png)
+
+This is by no means an exhaustive list of upload vulnerabilities related to file extensions. As with everything in hacking, we are looking to exploit flaws in code that others have written; this code may very well be uniquely written for the task at hand. This is the really important point to take away from this task: there are a million different ways to implement the same feature when it comes to programming -- your exploitation must be tailored to the filter at hand. The key to bypassing any kind of server side filter is to enumerate and see what is allowed, as well as what is blocked; then try to craft a payload which can pass the criteria the filter is looking for.
+
+
+#### Bypassing Server Side Filtering Magic Numbers
+
+We've already had a look at server-side extension filtering, but let's also take the opportunity to see how magic number checking could be implemented as a server-side filter.
+
+As mentioned previously, magic numbers are used as a more accurate identifier of files. The magic number of a file is a string of hex digits, and is always the very first thing in a file. Knowing this, it's possible to use magic numbers to validate file uploads, simply by reading those first few bytes and comparing them against either a whitelist or a blacklist. Bear in mind that this technique can be very effective against a PHP based webserver; however, it can sometimes fail against other types of webserver (hint hint).
+
+Let's take a look at an example. As per usual, we have an upload page:
+
+![image](https://user-images.githubusercontent.com/24814781/183417715-2ee54fdc-8269-4596-8d96-e3c576e43d75.png)
+
+As expected, if we upload our standard shell.php file, we get an error; however, if we upload a JPEG, the website is fine with it. All running as per expected so far.
+
+From the previous attempt at an upload, we know that JPEG files are accepted, so let's try adding the JPEG magic number to the top of our shell.php file. A quick look at the list of file signatures on Wikipedia
+```
+https://en.wikipedia.org/wiki/List_of_file_signatures
+```
+
+shows us that there are several possible magic numbers of JPEG files. It shouldn't matter which we use here, so let's just pick one (FF D8 FF DB). We could add the ASCII representation of these digits (ÿØÿÛ) directly to the top of the file but it's often easier to work directly with the hexadecimal representation, so let's cover that method.
+
+Before we get started, let's use the Linux file command to check the file type of our shell:
+
+![image](https://user-images.githubusercontent.com/24814781/183418216-60bce4c2-c867-4bdb-837f-8a2112efb458.png)
+
+As expected, the command tells us that the filetype is PHP. Keep this in mind as we proceed with the explanation.
+
+We can see that the magic number we've chosen is four bytes long, so let's open up the reverse shell script and add four random characters on the first line. These characters do not matter, so for this example we'll just use four "A"s:
+
+![image](https://user-images.githubusercontent.com/24814781/183418261-066cd6c9-9f98-4e5f-86ee-7ce9e15814ae.png)
+
+Save the file and exit. Next we're going to reopen the file in hexeditor (which comes by default on Kali), or any other tool which allows you to see and edit the shell as hex. In hexeditor the file looks like this:
+
+![image](https://user-images.githubusercontent.com/24814781/183418293-b6125cd3-f41a-4211-aca9-d9cbdc353510.png)
+
+Note the four bytes in the red box: they are all 41, which is the hex code for a capital "A" -- exactly what we added at the top of the file previously.
+
+Change this to the magic number we found earlier for JPEG files: FF D8 FF DB
+
+![image](https://user-images.githubusercontent.com/24814781/183418357-045705c8-c27c-4b16-a9ff-d002d8b21f9e.png)
+
+Now if we save and exit the file (Ctrl + x), we can use file once again, and see that we have successfully spoofed the filetype of our shell:
+
+![image](https://user-images.githubusercontent.com/24814781/183418397-a1a0cf25-5685-4a27-88ae-50b04408d6d5.png)
+
+Perfect. Now let's try uploading the modified shell and see if it bypasses the filter!
+
+![image](https://user-images.githubusercontent.com/24814781/183418422-59e59651-84ce-4482-b2ee-c188d0f28dba.png)
+
+There we have it -- we bypassed the server-side magic number filter and received a reverse shell. 
+
+
+####  Example Methodology
+
+We've seen various different types of filter now -- both client side and server side -- as well as the general methodology for file upload attacks. So let's take the opportunity to discuss an example methodology for approaching this kind of challenge in a little more depth. You may develop your own alternative to this method, however, if you're new to this kind of attack, you may find the following information useful.
+
+We'll look at this as a step-by-step process. Let's say that we've been given a website to perform a security audit on.
+
+1. The first thing we would do is take a look at the website as a whole. Using browser extensions such as the aforementioned Wappalyzer (or by hand) we would look for indicators of what languages and frameworks the web application might have been built with. Be aware that Wappalyzer is not always 100% accurate. A good start to enumerating this manually would be by making a request to the website and intercepting the response with Burpsuite. Headers such as server or x-powered-by can be used to gain information about the server. We would also be looking for vectors of attack, like, for example, an upload page. 
+
+2. Having found an upload page, we would then aim to inspect it further. Looking at the source code for client-side scripts to determine if there are any client-side filters to bypass would be a good thing to start with, as this is completely in our control.
+
+3. We would then attempt a completely innocent file upload. From here we would look to see how our file is accessed. In other words, can we access it directly in an uploads folder? Is it embedded in a page somewhere? What's the naming scheme of the website? This is where tools such as Gobuster might come in if the location is not immediately obvious. This step is extremely important as it not only improves our knowledge of the virtual landscape we're attacking, it also gives us a baseline "accepted" file which we can base further testing on. 
+	* An important Gobuster switch here is the -x switch, which can be used to look for files with specific extensions. For example, if you added -x php,txt,html to your Gobuster command, the tool would append .php, .txt, and .html to each word in the selected wordlist, one at a time. This can be very useful if you've managed to upload a payload and the server is changing the name of uploaded files.
+	
+4. Having ascertained how and where our uploaded files can be accessed, we would then attempt a malicious file upload, bypassing any client-side filters we found in step two. We would expect our upload to be stopped by a server side filter, but the error message that it gives us can be extremely useful in determining our next steps.
+
+Assuming that our malicious file upload has been stopped by the server, here are some ways to ascertain what kind of server-side filter may be in place:
+
+* If you can successfully upload a file with a totally invalid file extension (e.g. testingimage.invalidfileextension) then the chances are that the server is using an extension blacklist to filter out executable files. If this upload fails then any extension filter will be operating on a whitelist.
+    
+* Try re-uploading your originally accepted innocent file, but this time change the magic number of the file to be something that you would expect to be filtered. If the upload fails then you know that the server is using a magic number based filter.
+    
+* As with the previous point, try to upload your innocent file, but intercept the request with Burpsuite and change the MIME type of the upload to something that you would expect to be filtered. If the upload fails then you know that the server is filtering based on MIME types.
+
+* Enumerating file length filters is a case of uploading a small file, then uploading progressively bigger files until you hit the filter. At that point you'll know what the acceptable limit is. If you're very lucky then the error message of original upload may outright tell you what the size limit is. Be aware that a small file length limit may prevent you from uploading the reverse shell we've been using so far.
+
+
 
 
 
