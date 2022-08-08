@@ -19,6 +19,7 @@
   - [OSINT Sublist3r](#OSINT-Sublist3r)
   - [Virtual Hosts](#Virtual-Hosts)
 - [basic upload vulnerabilities](#basic-upload-vulnerabilities)
+  - [resources](#resources)
   - [Introduction](#Introduction)
   - [General Methodology](#General-Methodology)
   - [Overwriting Existing Files](#Overwriting-Existing-Files)
@@ -289,6 +290,17 @@ This command has a similar syntax to the first apart from the -fs switch, which 
 
 
 ### basic upload vulnerabilities
+
+tips: when looking and enumerating etc use tools like:
+* wappalyzer
+* source code
+* burp suite
+* inspect element gobuster/dirsearch
+
+#### resources 
+```
+https://0xn3va.gitbook.io/cheat-sheets/web-application/file-upload-vulnerabilities
+```
 
 #### Introduction 
 
