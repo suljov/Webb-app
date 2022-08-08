@@ -27,7 +27,7 @@
   - [Bypassing Client Side Filtering](#Bypassing-Client-Side-Filtering)
   - [Bypassing Server Side Filtering File Extensions](#Bypassing-Server-Side-Filtering-File-Extensions)
   - [Bypassing Server Side Filtering Magic Numbers](#Bypassing-Server-Side-Filtering-Magic-Numbers)
-  - [Example Methodology](# Example-Methodology)
+  - [Example Methodology](#Example-Methodology)
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures )
