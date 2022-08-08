@@ -19,7 +19,7 @@
   - [OSINT Sublist3r](#OSINT-Sublist3r)
   - [Virtual Hosts](#Virtual-Hosts)
 - [basic upload vulnerabilities](#basic-upload-vulnerabilities)
-  - [#Introduction](#Introduction)
+  - [Introduction](#Introduction)
   - [General Methodology](#General-Methodology)
   - [Overwriting Existing Files](#Overwriting-Existing-Files)
   - [Remote Code Execution](#Remote-Code-Execution)
