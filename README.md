@@ -19,6 +19,7 @@
   - [OSINT Sublist3r](#OSINT-Sublist3r)
   - [Virtual Hosts](#Virtual-Hosts)
 - [basic upload vulnerabilities](#basic-upload-vulnerabilities)
+  - [tips](#tips)
   - [resources](#resources)
   - [Introduction](#Introduction)
   - [General Methodology](#General-Methodology)
@@ -291,11 +292,19 @@ This command has a similar syntax to the first apart from the -fs switch, which 
 
 ### basic upload vulnerabilities
 
-tips: when looking and enumerating etc use tools like:
+#### tips
+
+when looking and enumerating etc use tools like:
 * wappalyzer
 * source code
 * burp suite
 * inspect element gobuster/dirsearch
+* change file with hexeditor
+
+be patient
+
+try to understand the framwork its not alwasy php shells etc maybe its node.js etc. 
+
 
 #### resources 
 ```
