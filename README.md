@@ -1,7 +1,7 @@
 # Webb-app
 
 ## Table of content
-
+------------------------------------------------------------------------------------------------------------------
 - [tools](#tools)
   - [XSRFProbe](#XSRFProbe)
   - [sublist3r](#sublist3r)
@@ -11,6 +11,7 @@
   - [ffuf](#ffuf)
   - [wfuzz](#wfuzz)
   - [gobuster](#gobuster)
+------------------------------------------------------------------------------------------------------------------
 - [subdomain enumeration](#subdomain-enumeration)
   - [Brief](#Brief)
   - [OSINT  SSL TLS Certificates](#OSINT-SSL-TLS-Certificates)
@@ -18,6 +19,7 @@
   - [DNS Bruteforce](#DNS-Bruteforce)
   - [OSINT Sublist3r](#OSINT-Sublist3r)
   - [Virtual Hosts](#Virtual-Hosts)
+------------------------------------------------------------------------------------------------------------------
 - [basic upload vulnerabilities](#basic-upload-vulnerabilities)
   - [tips](#tips)
   - [resources](#resources)
@@ -30,9 +32,11 @@
   - [Bypassing Server Side Filtering File Extensions](#Bypassing-Server-Side-Filtering-File-Extensions)
   - [Bypassing Server Side Filtering Magic Numbers](#Bypassing-Server-Side-Filtering-Magic-Numbers)
   - [Example Methodology](#Example-Methodology)
+------------------------------------------------------------------------------------------------------------------
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
-- [Cryptographic Failures ](#Cryptographic-Failures )
+- [Cryptographic Failures ](#Cryptographic-Failures)
+------------------------------------------------------------------------------------------------------------------
 - [Injection](#Injection)
   - [sql cheat sheet and resources](#sql-cheat-sheet-and-resources)
   - [basic SQL](#basic-SQL)
@@ -57,6 +61,7 @@
   - [Discovering Command Injection](#Discovering-Command-Injection)
   - [Exploiting Command Injection](#Exploiting-Command-Injection)
   - [Remediating Command Injection](#Remediating-Command-Injection)
+------------------------------------------------------------------------------------------------------------------
 - [Insecure Design](#Insecure-Design)
 - [Security Misconfiguration](#Security-Misconfiguration)
 - [Vulnerable and Outdated Components](#Vulnerable-and-Outdated-Components)
@@ -65,14 +70,17 @@
 - [Security Logging and Monitoring Failures](#Security-Logging-and-Monitoring-Failures)
 - [Server-Side Request Forgery](#Server-Side-Request-Forgery)
 - [Server Side Template Injection](#Server-Side-Template-Injection)
+------------------------------------------------------------------------------------------------------------------
 - [File Inclusion ](#File-Inclusion)
   - [Path Traversal](#Path-Traversal)
   - [Local File Inclusion LFI](#Local-File-Inclusion-LFI)
   - [Remote File Inclusion RFI](#Remote-File-Inclusion-RFI)
   - [LFI and RFI Remediation](#LFI-and-RFI-Remediation)
+------------------------------------------------------------------------------------------------------------------
 - [JWT token](#JWT-token)
   - [JWT tools](#JWT-tools)
   - [JWT resources](#JWT-resources)
+------------------------------------------------------------------------------------------------------------------
 - [IDOR](#IDOR)
   - [An IDOR Example](#An-IDOR-Example)
   - [Finding IDORs in Encoded IDs](#Finding-IDORs-in-Encoded-IDs)
@@ -80,6 +88,7 @@
   - [Finding IDORs in Unpredictable IDs](#Finding-IDORs-in-Unpredictable-IDs)
   - [Where are IDORs located](#Where-are-IDORs-located)
   - [A small Practical IDOR Example](#A-small-Practical-IDOR-Example)
+------------------------------------------------------------------------------------------------------------------
  
  
 
