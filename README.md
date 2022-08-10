@@ -1,7 +1,7 @@
 # Webb-app
 
 ## Table of content
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [tools](#tools)
   - [XSRFProbe](#XSRFProbe)
   - [sublist3r](#sublist3r)
@@ -11,7 +11,102 @@
   - [ffuf](#ffuf)
   - [wfuzz](#wfuzz)
   - [gobuster](#gobuster)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+- [Introduction to Web Applications](#Introduction-to-Web-Applications)
+- [Web Application Layout](#Web-Application-Layout)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - 
+- [Front End vs Back End](#Front-End-vs-Back-End)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [HTML](#HTML)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Cascading Style Sheets CSS](#Cascading-Style-Sheets-CSS)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [JavaScript](#JavaScript)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Sensitive Data Exposure](#Sensitive-Data-Exposure)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [HTML Injection](#HTML-Injection)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Cross Site Scripting XSS](#Cross-Site-Scripting-XSS)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Cross Site Request Forgery CSRF](#Cross-Site-Request-Forgery-CSRF)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Back End Servers](#Back-End-Servers)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Web Servers](#Web-Servers)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Databases](#Databases)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Development Frameworks and APIs](#Development-Frameworks-and-APIs)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Common Web Vulnerabilities](#Common-Web-Vulnerabilities)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+- [Public Vulnerabilities](#Public-Vulnerabilities)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+  - [](#)
+-----------------------------------------------------------------------------------------------------------------
 - [subdomain enumeration](#subdomain-enumeration)
   - [Brief](#Brief)
   - [OSINT  SSL TLS Certificates](#OSINT-SSL-TLS-Certificates)
@@ -19,7 +114,7 @@
   - [DNS Bruteforce](#DNS-Bruteforce)
   - [OSINT Sublist3r](#OSINT-Sublist3r)
   - [Virtual Hosts](#Virtual-Hosts)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [basic upload vulnerabilities](#basic-upload-vulnerabilities)
   - [tips](#tips)
   - [resources](#resources)
@@ -32,11 +127,11 @@
   - [Bypassing Server Side Filtering File Extensions](#Bypassing-Server-Side-Filtering-File-Extensions)
   - [Bypassing Server Side Filtering Magic Numbers](#Bypassing-Server-Side-Filtering-Magic-Numbers)
   - [Example Methodology](#Example-Methodology)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [owasp top 10](#owasp-top-10)
 - [Broken Access Control](#Broken-Access-Control)
 - [Cryptographic Failures ](#Cryptographic-Failures)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [Injection](#Injection)
   - [sql cheat sheet and resources](#sql-cheat-sheet-and-resources)
   - [basic SQL](#basic-SQL)
@@ -61,7 +156,7 @@
   - [Discovering Command Injection](#Discovering-Command-Injection)
   - [Exploiting Command Injection](#Exploiting-Command-Injection)
   - [Remediating Command Injection](#Remediating-Command-Injection)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [Insecure Design](#Insecure-Design)
 - [Security Misconfiguration](#Security-Misconfiguration)
 - [Vulnerable and Outdated Components](#Vulnerable-and-Outdated-Components)
@@ -70,17 +165,17 @@
 - [Security Logging and Monitoring Failures](#Security-Logging-and-Monitoring-Failures)
 - [Server-Side Request Forgery](#Server-Side-Request-Forgery)
 - [Server Side Template Injection](#Server-Side-Template-Injection)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [File Inclusion ](#File-Inclusion)
   - [Path Traversal](#Path-Traversal)
   - [Local File Inclusion LFI](#Local-File-Inclusion-LFI)
   - [Remote File Inclusion RFI](#Remote-File-Inclusion-RFI)
   - [LFI and RFI Remediation](#LFI-and-RFI-Remediation)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [JWT token](#JWT-token)
   - [JWT tools](#JWT-tools)
   - [JWT resources](#JWT-resources)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 - [IDOR](#IDOR)
   - [An IDOR Example](#An-IDOR-Example)
   - [Finding IDORs in Encoded IDs](#Finding-IDORs-in-Encoded-IDs)
@@ -88,7 +183,7 @@
   - [Finding IDORs in Unpredictable IDs](#Finding-IDORs-in-Unpredictable-IDs)
   - [Where are IDORs located](#Where-are-IDORs-located)
   - [A small Practical IDOR Example](#A-small-Practical-IDOR-Example)
-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
  
  
 
@@ -235,6 +330,42 @@ sub-domain enum:
 gobuster vhost -u http://<ip/domain> -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
 ```
 
+-----------------------------------------------------------------------------------------------------------------
+## Introduction to Web Applications
+
+### Web Application Layout
+
+### Front End vs Back End
+
+### HTML
+
+### Cascading Style Sheets CSS
+
+### JavaScript
+
+### Sensitive Data Exposure
+
+### HTML Injection
+
+### Cross Site Scripting XSS
+
+### Cross Site Request Forgery CSRF
+
+### Back End Servers
+
+### Web Servers
+
+### Databases
+
+### Development Frameworks and APIs
+
+### Common Web Vulnerabilities
+
+### Public Vulnerabilities
+
+
+
+-----------------------------------------------------------------------------------------------------------------
 
 
 ### subdomain enumeration
@@ -297,7 +428,7 @@ user@machine$ ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -
 ```
 
 This command has a similar syntax to the first apart from the -fs switch, which tells ffuf to ignore any results that are of the specified size.
-
+------------------------------------------------------------------------------------------------------------------
 
 ### basic upload vulnerabilities
 
@@ -728,7 +859,7 @@ Assuming that our malicious file upload has been stopped by the server, here are
 
 
 
-
+-----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -737,6 +868,7 @@ Assuming that our malicious file upload has been stopped by the server, here are
 ```
 https://owasp.org/
 ```
+	-----------------------------------------------------------------------------------------------------------------
 
 ### Broken Access Control
 Common Weakness Enumerations (CWEs) included are 
@@ -746,7 +878,8 @@ CWE-352: Cross-Site Request Forgery.
 ```
 https://owasp.org/Top10/A01_2021-Broken_Access_Control/
 ```
-
+-----------------------------------------------------------------------------------------------------------------
+	
 ### Cryptographic Failures 
 Notable Common Weakness Enumerations (CWEs) included are 
 CWE-259: Use of Hard-coded Password
@@ -755,7 +888,7 @@ CWE-331 Insufficient Entropy.
 ```
 https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
 ```
-
+-----------------------------------------------------------------------------------------------------------------
 
 
 ### Injection
@@ -1903,7 +2036,7 @@ When executed, although the data given will be in a different format than what i
 ![image](https://user-images.githubusercontent.com/24814781/182591076-c711d2f0-59b4-4844-9307-3c1d4dd9a797.png)
 
 
- 
+ -----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1917,7 +2050,7 @@ CWE-522: Insufficiently Protected Credentials
 ```
 https://owasp.org/Top10/A04_2021-Insecure_Design/
 ```
-
+-----------------------------------------------------------------------------------------------------------------
 ### Security Misconfiguration
 Notable CWEs included are 
 CWE-16 Configuration
@@ -1925,14 +2058,14 @@ CWE-611 Improper Restriction of XML External Entity Reference
 ```
 https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
 ```
-
+-----------------------------------------------------------------------------------------------------------------
 ### Vulnerable and Outdated Components
 Notable CWEs included are 
 CWE-1104: Use of Unmaintained Third-Party Components and the two CWEs from Top 10 2013 and 2017
 ```
 https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/
 ```
-
+-----------------------------------------------------------------------------------------------------------------
 ### Identification and Authentication Failures 
 Notable CWEs included are 
 CWE-297: Improper Validation of Certificate with Host Mismatch
@@ -1941,7 +2074,7 @@ CWE-384: Session Fixation
 ```
 https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures
 ```
-
+-----------------------------------------------------------------------------------------------------------------
 ### Security Logging and Monitoring Failures
 Notable Common Weakness Enumerations (CWEs) include 
 CWE-829: Inclusion of Functionality from Untrusted Control Sphere
@@ -1950,7 +2083,7 @@ CWE-502: Deserialization of Untrusted Data
 ```
 https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/
 ```
-
+-----------------------------------------------------------------------------------------------------------------
 ### Server-Side Request Forgery
 ```
 https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
@@ -2086,7 +2219,7 @@ You'll see we have now bypassed the rule, and the user updated the avatar. This 
 
 Viewing the page source of the avatar form, you'll see the currently set avatar now contains the contents from the /private directory in base64 encoding, decode this content and it will reveal a flag that you can enter below.
 
-
+-----------------------------------------------------------------------------------------------------------------
 
 ### Server Side Template Injection
 ```
@@ -2209,7 +2342,7 @@ ${self.template.module.runtime.exceptions.traceback.linecache.os.system("id")}
 {{joiner.__init__.__globals__.os}}
 {{namespace.__init__.__globals__.os}}
 ```
-
+-----------------------------------------------------------------------------------------------------------------
 ### File Inclusion 
 ```
 https://book.hacktricks.xyz/pentesting-web/file-inclusion
@@ -2425,7 +2558,7 @@ As a developer, it's important to be aware of web application vulnerabilities, h
 
 7.    Implement whitelisting for file names and locations as well as blacklisting.
 
-
+-----------------------------------------------------------------------------------------------------------------
 ### JWT token
 
 #### JWT tools
@@ -2540,3 +2673,4 @@ You can try testing this id parameter for an IDOR vulnerability by changing the 
 
 ![image](https://user-images.githubusercontent.com/24814781/182835159-4a454c19-0be3-4b94-8406-7cb8c1699e1c.png)
 
+-----------------------------------------------------------------------------------------------------------------
