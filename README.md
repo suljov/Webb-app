@@ -11,6 +11,7 @@
   - [ffuf](#ffuf)
   - [wfuzz](#wfuzz)
   - [gobuster](#gobuster)
+  - [wafw00f](#wafw00f)
 -----------------------------------------------------------------------------------------------------------------
 - [Introduction to Web Applications](#Introduction-to-Web-Applications)
 - [Web Application Layout](#Web-Application-Layout)
@@ -328,6 +329,13 @@ gobuster dir -u http://<ip> -w /usr/share/wordlists/dirbuster/directory-list-low
 sub-domain enum:
 ```
 gobuster vhost -u http://<ip/domain> -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+```
+
+
+### wafw00f 
+WAFW00F allows one to identify and fingerprint Web Application Firewall (WAF) products protecting a website.
+```
+https://github.com/EnableSecurity/wafw00f
 ```
 
 -----------------------------------------------------------------------------------------------------------------
