@@ -107,6 +107,11 @@
   - [](#)
   - [](#)
   - [](#)
+  
+-----------------------------------------------------------------------------------------------------------------
+
+- [Google Hacking or Dorking](#Google-Hacking-or-Dorking)
+
 -----------------------------------------------------------------------------------------------------------------
 - [subdomain enumeration](#subdomain-enumeration)
   - [Brief](#Brief)
@@ -371,8 +376,22 @@ https://github.com/EnableSecurity/wafw00f
 
 ### Public Vulnerabilities
 
+-----------------------------------------------------------------------------------------------------------------
 
 
+### Google Hacking or Dorking
+There are also external resources available that can help in discovering information about your target website; these resources are often referred to as OSINT or (Open-Source Intelligence) as they're freely available tools that collect information:
+
+#### Google Hacking / Dorking
+
+Google hacking / Dorking utilizes Google's advanced search engine features, which allow you to pick out custom content. You can, for instance, pick out results from a certain domain name using the site: filter, for example (site:tryhackme.com) you can then match this up with certain search terms, say, for example, the word admin (site:tryhackme.com admin) this then would only return results from the tryhackme.com website which contain the word admin in its content. You can combine multiple filters as well. Here is an example of more filters you can use:
+
+![image](https://user-images.githubusercontent.com/24814781/191031949-334cbeaa-a90d-4a3f-ad7e-f3b89eeadee3.png)
+
+More information about google hacking can be found here:
+```
+https://en.wikipedia.org/wiki/Google_hacking
+```
 -----------------------------------------------------------------------------------------------------------------
 
 
