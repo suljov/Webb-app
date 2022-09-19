@@ -886,7 +886,12 @@ https://wiki.owasp.org/index.php/OWASP_favicon_database
 curl https://<path leading to the favicon>/favicon.ico | md5sum	
 ```
 then look up the favicon at the owasp database 
+
+
+
 ----------------------------------------------------------------------------------------------------------------
+
+
 
 ### Broken Access Control
 Common Weakness Enumerations (CWEs) included are 
