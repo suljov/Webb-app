@@ -876,6 +876,9 @@ Assuming that our malicious file upload has been stopped by the server, here are
 ```
 https://owasp.org/
 ```
+```
+https://wiki.owasp.org/index.php/OWASP_favicon_database
+```
 	-----------------------------------------------------------------------------------------------------------------
 
 ### Broken Access Control
