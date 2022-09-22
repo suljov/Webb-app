@@ -12,6 +12,9 @@
   - [wfuzz](#wfuzz)
   - [gobuster](#gobuster)
   - [wafw00f](#wafw00f)
+  - [feroxbuster](#feroxbuster)
+  - [nikto](#nikto)
+  - [whatweb](#whatweb)
 -----------------------------------------------------------------------------------------------------------------
 - [Introduction to Web Applications](#Introduction-to-Web-Applications)
 - [Web Application Layout](#Web-Application-Layout)
@@ -341,6 +344,48 @@ gobuster vhost -u http://<ip/domain> -w /usr/share/wordlists/SecLists/Discovery/
 WAFW00F allows one to identify and fingerprint Web Application Firewall (WAF) products protecting a website.
 ```
 https://github.com/EnableSecurity/wafw00f
+```
+
+### feroxbuster
+feroxbuster is a tool designed to perform Forced Browsing. Forced browsing is an attack where the aim is to enumerate and access resources that are not referenced by the web application, but are still accessible by an attacker. feroxbuster uses brute force combined with a wordlist to search for unlinked content in target directories. These resources may store sensitive information about web applications and operational systems, such as source code, credentials, internal network addressing, etc… This attack is also known as Predictable Resource Location, File Enumeration, Directory Enumeration, and Resource Enumeration.
+
+```
+sudo apt install feroxbuster
+```
+basic usage example: 
+```
+feroxbuster --url http://<url or ip>/ --wordlist <path to a wordlist>
+```
+
+
+### nikto
+Nikto is a pluggable web server and CGI scanner written in Perl, using rfp’s LibWhisker to perform fast security or informational checks.
+
+Features:
+
+*    Easily updatable CSV-format checks database
+*    Output reports in plain text or HTML
+*    Available HTTP versions automatic switching
+*    Generic as well as specific server software checks
+*    SSL support (through libnet-ssleay-perl)
+*    Proxy support (with authentication)
+*    Cookies support
+
+```
+sudo apt install nikto
+```
+basic usgae example: 
+```
+nikto -h http://<url or ip>/ -C all
+```
+
+
+### whatweb
+WhatWeb identifies websites. It recognises web technologies including content management systems (CMS), blogging platforms, statistic/analytics packages, JavaScript libraries, web servers, and embedded devices.
+
+WhatWeb has over 900 plugins, each to recognise something different. It also identifies version numbers, email addresses, account IDs, web framework modules, SQL errors, and more.
+```
+sudo apt install whatweb
 ```
 
 -----------------------------------------------------------------------------------------------------------------
