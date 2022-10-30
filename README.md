@@ -113,6 +113,54 @@
   
 -----------------------------------------------------------------------------------------------------------------
 
+- [Information gathering - web edition](#Information-gathering---web-edition)
+  - [Information Gathering](#Information-Gathering)
+  - [WHOIS](#WHOIS)
+  - [DNS](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  - [Passive Subdomain Enumeration](#Passive-Subdomain-Enumeration)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  - [Passive Infrastructure Identification](#Passive-Infrastructure-Identification)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  - [Active Infrastructure Identification](#Active-Infrastructure-Identification)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  - [Active Subdomain Enumeration](#Active-Subdomain-Enumeration)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  - [Virtual Hosts](#Virtual-Hosts)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  - [Crawling](#Crawling)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  
+
+-----------------------------------------------------------------------------------------------------------------
 - [Google Hacking or Dorking](#Google-Hacking-or-Dorking)
 
 -----------------------------------------------------------------------------------------------------------------
@@ -388,6 +436,7 @@ WhatWeb has over 900 plugins, each to recognise something different. It also ide
 sudo apt install whatweb
 ```
 
+
 -----------------------------------------------------------------------------------------------------------------
 ## Introduction to Web Applications
 
@@ -423,6 +472,48 @@ sudo apt install whatweb
 
 -----------------------------------------------------------------------------------------------------------------
 
+## Information gathering - web edition
+
+### Information Gathering
+The information gathering
+```
+https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/01-Information_Gathering/README
+```
+phase is the first step in every penetration test where we need to simulate external attackers without internal information from the target organization. This phase is crucial as poor and rushed information gathering could result in missing flaws that otherwise thorough enumeration would have uncovered.
+
+![image](https://user-images.githubusercontent.com/24814781/198901285-44ecc3a1-6717-4229-bde2-96d31114c331.png)
+
+This phase helps us understand the attack surface, technologies used, and, in some cases, discover development environments or even forgotten and unmaintained infrastructure that can lead us to internal network access as they are usually less protected and monitored. Information gathering is typically an iterative process. As we discover assets (say, a subdomain or virtual host), we will need to fingerprint the technologies in use, look for hidden pages/directories, etc., which may lead us to discover another subdomain and start the process over again.
+
+For example, we can think of it as stumbling across new subdomains during one of our penetration tests based on the SSL certificate. However, if we take a closer look at these subdomains, we will often see different technologies in use than the main company website. Subdomains and vhosts are used to present other information and perform other tasks that have been separated from the homepage. Therefore, it is essential to find out which technologies are used, what purpose they serve, and how they work. During this process, our objective is to identify as much information as we can from the following areas:
+
+![image](https://user-images.githubusercontent.com/24814781/198901302-8e0888fc-11e3-45d8-841b-c8bf27d59882.png)
+
+We can break the information gathering process into two main categories:
+
+![image](https://user-images.githubusercontent.com/24814781/198901326-9b519fdb-8fbb-45d1-86c1-76160f350c7e.png)
+
+It is crucial to keep the information that we collect well-organized as we will need various pieces of data as inputs for later phasing of the testing process. Depending on the type of assessment we are performing, we may need to include some of this enumeration data in our final report deliverable (such as an External Penetration Test). When writing up a bug bounty report, we will only need to include details relevant specifically to the bug we are reporting (i.e., a hidden subdomain that we discovered led to the disclosure of another subdomain that we leveraged to obtain remote code execution (RCE) against our target.
+
+It is worth signing up for an account at Hackerone,
+```
+`https://hackerone.com/bug-bounty-programs 
+```
+perusing the program list, and choosing a few targets to reproduce all of the examples in this module. Practice makes perfect. Continuously practicing these techniques will help us hone our craft and make many of these information gathering steps second nature. As we become more comfortable with the tools and techniques shown throughout this module, we should develop our own, repeatable methodology. We may find that we like specific tools and command-line techniques for some phases of information gathering and discover different tools that we prefer for other phases. We may want to write out our own scripts to automate some of these phases as well.
+
+## WHOIS
+
+We can consider WHOIS
+```
+https://en.wikipedia.org/wiki/WHOIS
+```
+as the "white pages" for domain names. It is a TCP-based transaction-oriented query/response protocol listening on TCP port 43 by default. We can use it for querying databases containing domain names, IP addresses, or autonomous systems and provide information services to Internet users. The protocol is defined in RFC 3912.
+```
+https://datatracker.ietf.org/doc/html/rfc3912
+```
+
+-----------------------------------------------------------------------------------------------------------------
+
 
 ### Google Hacking or Dorking
 There are also external resources available that can help in discovering information about your target website; these resources are often referred to as OSINT or (Open-Source Intelligence) as they're freely available tools that collect information:
@@ -437,6 +528,57 @@ More information about google hacking can be found here:
 ```
 https://en.wikipedia.org/wiki/Google_hacking
 ```
+The first WHOIS directory was created in the early 1970s by Elizabeth Feinler
+```
+https://en.wikipedia.org/wiki/Elizabeth_J._Feinler
+```
+and her team working out of Stanford University's Network Information Center (NIC). Together with her team, they created domains divided into categories based upon a computer's physical address. We can read more about the fascinating history of WHOIS here.
+```
+https://en.wikipedia.org/wiki/WHOIS#History
+```
+
+The WHOIS domain lookups allow us to retrieve information about the domain name of an already registered domain. The Internet Corporation of Assigned Names and Numbers (ICANN) 
+
+```
+https://www.icann.org/get-started
+```
+
+requires that accredited registrars enter the holder's contact information, the domain's creation, and expiration dates, and other information in the Whois database immediately after registering a domain. In simple terms, the Whois database is a searchable list of all domains currently registered worldwide.
+
+WHOIS lookups were initially performed using command-line tools. Nowadays, many web-based tools exist, but command-line options often give us the most control over our queries and help filter and sort the resultant output. Sysinternals WHOIS
+
+```
+https://learn.microsoft.com/en-gb/sysinternals/downloads/whois
+``` 
+
+for Windows or Linux WHOIS
+```
+https://linux.die.net/man/1/whois
+```
+
+command-line utility are our preferred tools for gathering information. However, there are some online versions like whois.domaintools.com
+
+```
+https://whois.domaintools.com/
+```
+
+we can also use.
+
+We would get the following response from the previous command to run a whois lookup against the facebook.com domain. An example of this whois command is:
+
+![image](https://user-images.githubusercontent.com/24814781/198901571-18298ea6-3b92-47bc-be76-a507cf3b2023.png)
+
+We can gather the same data using whois.exe from Windows Sysinternals:
+
+![image](https://user-images.githubusercontent.com/24814781/198901591-2e940673-1866-45c1-a294-2b6e790210b4.png)
+
+From this output, we have gathered the following information:
+
+![image](https://user-images.githubusercontent.com/24814781/198901610-1d563d6d-a8e1-42f1-8e21-231edd3aad88.png)
+
+Though none of this information on its own is enough for us to mount an attack, it is essential data that we want to note down for later.
+
+
 -----------------------------------------------------------------------------------------------------------------
 
 
