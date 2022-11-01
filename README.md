@@ -116,7 +116,7 @@
 - [Information gathering - web edition](#Information-gathering---web-edition)
   - [Information Gathering](#Information-Gathering)
   - [WHOIS](#WHOIS)
-  - [DNS](#)
+  - [DNS](#DNS)
     - [What is DNS?](#What-is-DNS)
     - [Nslookup and DIG](#Nslookup-and-DIG)
   - [Passive Subdomain Enumeration](#Passive-Subdomain-Enumeration)
