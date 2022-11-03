@@ -120,10 +120,10 @@
     - [What is DNS?](#What-is-DNS)
     - [Nslookup and DIG](#Nslookup-and-DIG)
   - [Passive Subdomain Enumeration](#Passive-Subdomain-Enumeration)
-    - [](#)
-    - [](#)
-    - [](#)
-    - [](#)
+    - [VirusTotal](#VirusTotal)
+    - [Certificates](#Certificates)
+    - [Certificate Transparency](#Certificate-Transparency)
+    - [Automating Passive Subdomain Enumeration](#Automating-Passive-Subdomain-Enumeration)
     - [](#)
   - [Passive Infrastructure Identification](#Passive-Infrastructure-Identification)
     - [](#)
@@ -1013,6 +1013,182 @@ OrgTechEmail:  domain@facebook.com
 OrgTechRef:    https://rdap.arin.net/registry/entity/OPERA82-ARIN
 
 ```
+
+
+## Passive Subdomain Enumeration
+
+Subdomain enumeration refers to mapping all available subdomains within a domain name. It increases our attack surface and may uncover hidden management backend panels or intranet web applications that network administrators expected to keep hidden using the "security by obscurity" strategy. At this point, we will only perform passive subdomain enumeration using third-party services or publicly available information. Still, we will expand the information we gather in future active subdomain enumeration activities.
+
+### VirusTotal 
+
+VirusTotal maintains its DNS replication service, which is developed by preserving DNS resolutions made when users visit URLs given by them. To receive information about a domain, type the domain name into the search bar and click on the "Relations" tab.
+
+![image](https://user-images.githubusercontent.com/24814781/199846592-aab9613e-f4c2-4c09-9fd3-7778eedd7080.png)
+
+
+### Certificates
+
+Another interesting source of information we can use to extract subdomains is SSL/TLS certificates. The main reason is Certificate Transparency (CT), a project that requires every SSL/TLS certificate issued by a Certificate Authority (CA) to be published in a publicly accessible log.
+
+We will learn how to examine CT logs to discover additional domain names and subdomains for a target organization using two primary resources:
+
+```
+https://censys.io
+```
+
+```
+https://crt.sh/
+```
+
+We can navigate to https://search.censys.io/certificates or https://crt.sh and introduce the domain name of our target organization to start discovering new subdomains.
+
+![image](https://user-images.githubusercontent.com/24814781/199846686-04623c7a-7303-4e71-94c9-68cd77246f7b.png)
+
+![image](https://user-images.githubusercontent.com/24814781/199846689-82f93239-c33d-4ecd-95a5-74b415c3c3cf.png)
+
+
+Although the website is excellent, we would like to have this information organized and be able to combine it with other sources found throughout the information-gathering process. Let us perform a curl request to the target website asking for a JSON output as this is more manageable for us to process. We can do this via the following commands:
+
+### Certificate Transparency
+
+```
+Suljov@htb[/htb]$ export TARGET="facebook.com"
+Suljov@htb[/htb]$ curl -s "https://crt.sh/?q=${TARGET}&output=json" | jq -r '.[] | "\(.name_value)\n\(.common_name)"' | sort -u > "${TARGET}_crt.sh.txt"
+```
+```
+Suljov@htb[/htb]$ head -n20 facebook.com_crt.sh.txt
+
+*.adtools.facebook.com
+*.ak.facebook.com
+*.ak.fbcdn.net
+*.alpha.facebook.com
+*.assistant.facebook.com
+*.beta.facebook.com
+*.channel.facebook.com
+*.cinyour.facebook.com
+*.cinyourrc.facebook.com
+*.connect.facebook.com
+*.cstools.facebook.com
+*.ctscan.facebook.com
+*.dev.facebook.com
+*.dns.facebook.com
+*.extern.facebook.com
+*.extools.facebook.com
+*.f--facebook.com
+*.facebook.com
+*.facebookcorewwwi.onion
+*.facebookmail.com
+```
+![image](https://user-images.githubusercontent.com/24814781/199846798-f95f9d98-c8e0-44ba-b263-0979a23d3058.png)
+
+We also can manually perform this operation against a target using OpenSSL via:
+
+```
+Suljov@htb[/htb]$ export TARGET="facebook.com"
+Suljov@htb[/htb]$ export PORT="443"
+Suljov@htb[/htb]$ openssl s_client -ign_eof 2>/dev/null <<<$'HEAD / HTTP/1.0\r\n\r' -connect "${TARGET}:${PORT}" | openssl x509 -noout -text -in - | grep 'DNS' | sed -e 's|DNS:|\n|g' -e 's|^\*.*||g' | tr -d ',' | sort -u
+
+*.facebook.com
+*.facebook.net
+*.fbcdn.net
+*.fbsbx.com
+*.m.facebook.com
+*.messenger.com
+*.xx.fbcdn.net
+*.xy.fbcdn.net
+*.xz.fbcdn.net
+facebook.com
+messenger.com
+```
+
+### Automating Passive Subdomain Enumeration
+
+We have learned how to acquire helpful information from our target organization, like subdomains, naming patterns, alternate TLDs, IP ranges, etc., using third-party services without interacting directly with their infrastructure or relying on automated tools. Now, we will learn how to enumerate subdomains using tools and previously obtained information.
+
+### TheHarvester
+
+TheHarvester 
+```
+https://github.com/laramies/theHarvester
+```
+is a simple-to-use yet powerful and effective tool for early-stage penetration testing and red team engagements. We can use it to gather information to help identify a company's attack surface. The tool collects emails, names, subdomains, IP addresses, and URLs from various public data sources for passive information gathering. For now, we will use the following modules:
+
+![image](https://user-images.githubusercontent.com/24814781/199847012-36016ec9-fa53-448d-a259-908c2d274e65.png)
+
+To automate this, we will create a file called sources.txt with the following contents.
+```
+Suljov@htb[/htb]$ cat sources.txt
+
+baidu
+bufferoverun
+crtsh
+hackertarget
+otx
+projecdiscovery
+rapiddns
+sublist3r
+threatcrowd
+trello
+urlscan
+vhost
+virustotal
+zoomeye
+```
+Once the file is created, we will execute the following commands to gather information from these sources.
+
+```
+Suljov@htb[/htb]$ export TARGET="facebook.com"
+Suljov@htb[/htb]$ cat sources.txt | while read source; do theHarvester -d "${TARGET}" -b $source -f "${source}_${TARGET}";done
+
+<SNIP>
+*******************************************************************
+*  _   _                                            _             *
+* | |_| |__   ___    /\  /\__ _ _ ____   _____  ___| |_ ___ _ __  *
+* | __|  _ \ / _ \  / /_/ / _` | '__\ \ / / _ \/ __| __/ _ \ '__| *
+* | |_| | | |  __/ / __  / (_| | |   \ V /  __/\__ \ ||  __/ |    *
+*  \__|_| |_|\___| \/ /_/ \__,_|_|    \_/ \___||___/\__\___|_|    *
+*                                                                 *
+* theHarvester 4.0.0                                              *
+* Coded by Christian Martorella                                   *
+* Edge-Security Research                                          *
+* cmartorella@edge-security.com                                   *
+*                                                                 *
+*******************************************************************
+
+
+[*] Target: facebook.com
+
+[*] Searching Urlscan.
+
+[*] ASNS found: 29
+--------------------
+AS12578
+AS13335
+AS13535
+AS136023
+AS14061
+AS14618
+AS15169
+AS15817
+
+<SNIP>
+```
+When the process finishes, we can extract all the subdomains found and sort them via the following command:
+```
+Suljov@htb[/htb]$ cat *.json | jq -r '.hosts[]' 2>/dev/null | cut -d':' -f 1 | sort -u > "${TARGET}_theHarvester.txt"
+```
+
+Now we can merge all the passive reconnaissance files via:
+
+```
+Suljov@htb[/htb]$ cat facebook.com_*.txt | sort -u > facebook.com_subdomains_passive.txt
+Suljov@htb[/htb]$ cat facebook.com_subdomains_passive.txt | wc -l
+
+11947
+```
+
+
+
 
 -----------------------------------------------------------------------------------------------------------------
 
