@@ -124,7 +124,6 @@
     - [Certificates](#Certificates)
     - [Certificate Transparency](#Certificate-Transparency)
     - [Automating Passive Subdomain Enumeration](#Automating-Passive-Subdomain-Enumeration)
-    - [](#)
   - [Passive Infrastructure Identification](#Passive-Infrastructure-Identification)
     - [](#)
     - [](#)
