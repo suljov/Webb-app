@@ -125,11 +125,7 @@
     - [Certificate Transparency](#Certificate-Transparency)
     - [Automating Passive Subdomain Enumeration](#Automating-Passive-Subdomain-Enumeration)
   - [Passive Infrastructure Identification](#Passive-Infrastructure-Identification)
-    - [](#)
-    - [](#)
-    - [](#)
-    - [](#)
-    - [](#)
+    - [Wayback Machine](#Wayback-Machine)
   - [Active Infrastructure Identification](#Active-Infrastructure-Identification)
     - [](#)
     - [](#)
@@ -1186,6 +1182,54 @@ Suljov@htb[/htb]$ cat facebook.com_subdomains_passive.txt | wc -l
 11947
 ```
 
+## Passive Infrastructure Identification
+
+Netcraft
+```
+https://www.netcraft.com/
+```
+can offer us information about the servers without even interacting with them, and this is something valuable from a passive information gathering point of view. We can use the service by visiting https://sitereport.netcraft.com and entering the target domain.
+
+![image](https://user-images.githubusercontent.com/24814781/200069648-388abd73-fa9f-4468-ade8-27d6f579b2a5.png)
+
+Some interesting details we can observe from the report are:
+
+![image](https://user-images.githubusercontent.com/24814781/200069699-54dad05a-f3b6-46e9-81fd-6bef7af68247.png)
+
+We need to pay special attention to the latest IPs used. Sometimes we can spot the actual IP address from the webserver before it was placed behind a load balancer, web application firewall, or IDS, allowing us to connect directly to it if the configuration allows it. This kind of technology could interfere with or alter our future testing activities.
+
+### Wayback Machine
+
+The Internet Archive
+```
+https://en.wikipedia.org/wiki/Internet_Archive
+```
+is an American digital library that provides free public access to digitalized materials, including websites, collected automatically via its web crawlers.
+
+We can access several versions of these websites using the Wayback Machine
+```
+http://web.archive.org/
+```
+to find old versions that may have interesting comments in the source code or files that should not be there. This tool can be used to find older versions of a website at a point in time. Let's take a website running WordPress, for example. We may not find anything interesting while assessing it using manual methods and automated tools, so we search for it using Wayback Machine and find a version that utilizes a specific (now vulnerable) plugin. Heading back to the current version of the site, we find that the plugin was not removed properly and can still be accessed via the wp-content directory. We can then utilize it to gain remote code execution on the host and a nice bounty.
+
+![image](https://user-images.githubusercontent.com/24814781/200070029-2f8e1169-27db-4e84-a656-571ac096e312.png)
+
+We can check one of the first versions of facebook.com captured on December 1, 2005, which is interesting, perhaps gives us a sense of nostalgia but is also extremely useful for us as security researchers.
+
+![image](https://user-images.githubusercontent.com/24814781/200070084-0d866425-e50e-46d7-9fa2-a026a1a5e357.png)
+
+We can also use the tool waybackurls
+```
+https://github.com/tomnomnom/waybackurls
+```
+
+to inspect URLs saved by Wayback Machine and look for specific keywords. Provided we have Go set up correctly on our host, we can install the tool as follows:
+
+```
+Suljov@htb[/htb]$ go get github.com/tomnomnom/waybackurls
+```
+
+
 
 
 
@@ -1206,7 +1250,28 @@ More information about google hacking can be found here:
 https://en.wikipedia.org/wiki/Google_hacking
 ```
 
+To get a list of crawled URLs from a domain with the date it was obtained, we can add the -dates switch to our command as follows:
 
+```
+Suljov@htb[/htb]$ waybackurls -dates https://facebook.com > waybackurls.txt
+Suljov@htb[/htb]$ cat waybackurls.txt
+
+2018-05-20T09:46:07Z http://www.facebook.com./
+2018-05-20T10:07:12Z https://www.facebook.com/
+2018-05-20T10:18:51Z http://www.facebook.com/#!/pages/Welcome-Baby/143392015698061?ref=tsrobots.txt
+2018-05-20T10:19:19Z http://www.facebook.com/
+2018-05-20T16:00:13Z http://facebook.com
+2018-05-21T22:12:55Z https://www.facebook.com
+2018-05-22T15:14:09Z http://www.facebook.com
+2018-05-22T17:34:48Z http://www.facebook.com/#!/Syerah?v=info&ref=profile/robots.txt
+2018-05-23T11:03:47Z http://www.facebook.com/#!/Bin595
+
+<SNIP>
+```
+
+If we want to access a specific resource, we need to place the URL in the search menu and navigate to the date when the snapshot was created. As stated previously, Wayback Machine can be a handy tool and should not be overlooked. It can very likely lead to us discovering forgotten assets, pages, etc., which can lead to discovering a flaw.
+
+## Active Infrastructure Identification
 -----------------------------------------------------------------------------------------------------------------
 
 
