@@ -134,9 +134,9 @@
     - [Aquatone Options](#Aquatone-Options)
   - [Active Subdomain Enumeration](#Active-Subdomain-Enumeration)
     - [ZoneTransfers](#ZoneTransfers)
-    - [1. Identifying Nameservers](#1.-Identifying-Nameservers)
-    - [2. Testing for ANY and AXFR Zone Transfer](#2.-Testing-for-ANY-and-AXFR-Zone-Transfer)
-    - [Gobuster](#Gobuster)
+    - [1 Identifying Nameservers](#1-Identifying-Nameservers)
+    - [2 Testing for ANY and AXFR Zone Transfer](#2-Testing-for-ANY-and-AXFR-Zone-Transfer)
+    - [Gobuster info](#Gobuster-info)
     - [Gobuster - DNS](#Gobuster---DNS)
   - [Virtual Hosts](#Virtual-Hosts)
     - [](#)
@@ -1703,7 +1703,7 @@ service and the zonetransfer.me domain to have an idea of the information that c
 
 A manual approach will be the following set of commands:
 
-## 1. Identifying Nameservers
+## 1 Identifying Nameservers
 
 ```
 Suljov@htb[/htb]$ nslookup -type=NS zonetransfer.me
@@ -1718,7 +1718,7 @@ zonetransfer.me	nameserver = nsztm1.digi.ninja.
 
 Perform the Zone transfer using -type=any and -query=AXFR parameters
 
-## 2. Testing for ANY and AXFR Zone Transfer
+## 2 Testing for ANY and AXFR Zone Transfer
 
 ```
 Suljov@htb[/htb]$ nslookup -type=any -query=AXFR zonetransfer.me nsztm1.digi.ninja
@@ -1809,7 +1809,7 @@ zonetransfer.me
 
 If we manage to perform a successful zone transfer for a domain, there is no need to continue enumerating this particular domain as this will extract all the available information.
 
-## Gobuster
+## Gobuster info
 
 Gobuster is a tool that we can use to perform subdomain enumeration. It is especially interesting for us the patterns options as we have learned some naming conventions from the passive information gathering we can use to discover new subdomains following the same pattern.
 
