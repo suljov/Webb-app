@@ -3145,7 +3145,7 @@ This is similar to the previous SQL query. However, the information we want to r
 The query results provide three columns for the staff_users table: id, password, and username. We can use the username and password columns for our following query to retrieve the user's information.
 
 ```
-0 UNION SELECT 1,2,group_concat(username,':',password SEPARATOR '<br>') FROM staff_users
+0 UNION SELECT 1,2,group_concat(username,':',password SEPARATOR '<database>') FROM staff_users
 ```
 
 Again we use the group_concat method to return all of the rows into one string and to make it easier to read. We've also added ,':', to split the username and password from each other. Instead of being separated by a comma, we've chosen the HTML <br> tag that forces each result to be on a separate line to make for easier reading.
